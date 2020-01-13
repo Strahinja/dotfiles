@@ -177,7 +177,6 @@ let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#ctrlspace#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
 
 let g:ale_sign_error = "\uf0e7"
@@ -232,7 +231,7 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
 "let g:gutentags_trace = 1
 let g:gutentags_project_root = ['package.json', '.git']
-let g:gutentags_cache_dir = 'c:\\progra~2\\vim\\.cache\\vim\\ctags'  "expand('~/.cache/vim/ctags')
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_missing = 1
@@ -280,7 +279,4 @@ let g:gitgutter_sign_modified_removed = "\ufbc7"
 "let g:gitgutter_sign_removed = "\uf458"
 "let g:gitgutter_sign_removed_first_line = "\uf458"
 "let g:gitgutter_sign_modified_removed = "\uf474"
-
-let g:indentLine_color_gui = '#003000'
-let g:indentLine_char = '|'
 
