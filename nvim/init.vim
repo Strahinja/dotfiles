@@ -166,6 +166,7 @@ set inccommand=nosplit
 
 "command! -nargs=0 -range CtrlSpaceCloseBuffer :call ctrlspace#buffers#CloseBuffer()
 "command! -nargs=0 -range CtrlSpaceDeleteBuffer :call ctrlspace#buffers#DeleteBuffer()
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 if executable("ag")
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
