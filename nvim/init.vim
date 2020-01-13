@@ -37,9 +37,9 @@ nnoremap <Tab> :CtrlSpaceGoDown<CR>
 nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
 "nmap <C-Q> :bdelete<CR>
 "nmap <C-Q> :CtrlSpaceCloseBuffer<CR>
-nnoremap <C-Q> <C-Space>c<CR>
+nmap <C-Q> <C-Space>c<CR>
 "nmap <C-X> :tabclose<CR>
-nnoremap <C-X> <C-Space>lc
+nmap <C-X> <C-Space>lc
 nnoremap <leader>p <Plug>(ale_fix)
 "nnoremap <leader>s :ToggleWorkspace<CR>
 nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
