@@ -40,6 +40,8 @@ nnoremap <C-/> :FZF<CR>
 nmap <C-Q> <C-Space>c<CR>
 "nmap <C-X> :tabclose<CR>
 nmap <C-X> <C-Space>lc
+nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
+imap <C-;> <C-k>:9<C-k>"6<Esc>i
 nnoremap <leader>p <Plug>(ale_fix)
 nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
