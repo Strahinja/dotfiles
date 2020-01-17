@@ -1,6 +1,5 @@
 set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
 let &packpath = &runtimepath
-"source ~/_vimrc
 
 " vim: set ft=vim :
 let s:cpo_save=&cpoptions
@@ -35,24 +34,22 @@ nnoremap <C-S-Tab> :tabp<CR>
 "nmap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :CtrlSpaceGoDown<CR>
 nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
+nmap <C-P> <C-Space>O<CR>
+nnoremap <C-/> :FZF<CR>
 "nmap <C-Q> :bdelete<CR>
-"nmap <C-Q> :CtrlSpaceCloseBuffer<CR>
 nmap <C-Q> <C-Space>c<CR>
 "nmap <C-X> :tabclose<CR>
 nmap <C-X> <C-Space>lc
 nnoremap <leader>p <Plug>(ale_fix)
-"nnoremap <leader>s :ToggleWorkspace<CR>
 nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
-"map <Up> k
-"map <Down> j
 cabbrev h vertical botright help
 
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
-set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qDRAFT
-set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qDRAFT
+set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
+set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
 set helplang=en
 
 filetype off                  " required
@@ -94,6 +91,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
 Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'majutsushi/tagbar'
 
 "Plugin 'lithammer/vim-eighties'
 "Plugin 'sainnhe/vim-color-lost-shrine'
@@ -109,8 +107,8 @@ Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'ap/vim-css-color'
 
 Plugin 'junegunn/fzf'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'DavidEGx/ctrlp-smarttabs'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'DavidEGx/ctrlp-smarttabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
@@ -161,11 +159,11 @@ set shiftwidth=4
 set expandtab
 set textwidth=80
 set inccommand=nosplit
+set switchbuf+=usetab
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 "set sessionoptions=winsize,winpos,terminal,tabpages,sesdir,resize,buffers,blank
 
-"command! -nargs=0 -range CtrlSpaceCloseBuffer :call ctrlspace#buffers#CloseBuffer()
-"command! -nargs=0 -range CtrlSpaceDeleteBuffer :call ctrlspace#buffers#DeleteBuffer()
+let g:CtrlSpaceUseTabline = 1
 let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 if executable("ag")
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
@@ -174,9 +172,10 @@ let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='luna'
-"let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#ctrlspace#enabled = 1
+let g:airline#extensions#tabline#ctrlspace#enabled = 1
+let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 1
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
