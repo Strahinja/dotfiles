@@ -20,7 +20,7 @@ vnoremap <S-Del> "*d
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
-noremap <F4> :CtrlPBuffer<CR>
+"noremap <F4> :CtrlPBuffer<CR>
 noremap <F5> :tabe
 noremap <F6> :vsp
 nnoremap <silent> <F7> :copen<CR>
@@ -102,7 +102,7 @@ Plugin 'tpope/vim-characterize'
 Plugin 'posva/vim-vue'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets' " Snippet definitions for UltiSnips
 Plugin 'dense-analysis/ale'
 Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'ap/vim-css-color'
@@ -140,6 +140,7 @@ colors phosphor
 syntax on
 set hidden
 set fileformat=unix
+set fileformats=unix,dos
 set laststatus=2
 set showcmd " show leader
 set timeoutlen=3000 " leader timeout
