@@ -36,6 +36,7 @@ nnoremap <Tab> :CtrlSpaceGoDown<CR>
 nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
 nmap <C-P> <C-Space>O<CR>
 nnoremap <C-/> :FZF<CR>
+nmap <C-S-T> :Tagbar<CR>
 "nmap <C-Q> :bdelete<CR>
 nmap <C-Q> <C-Space>c<CR>
 "nmap <C-X> :tabclose<CR>
@@ -82,13 +83,10 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"Plugin 'wincent/command-t'
-
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tommcdo/vim-fubitive'
 Plugin 'jreybert/vimagit'
-" Plugin 'powerline/powerline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
@@ -103,14 +101,13 @@ Plugin 'tpope/vim-characterize'
 "Plugin 'leafOfTree/vim-vue-plugin'
 Plugin 'posva/vim-vue'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'dense-analysis/ale'
 Plugin 'neoclide/coc.nvim', {'pinned': 1}
-"Plugin 'prettier/vim-prettier', {'pinned': 1}
 Plugin 'ap/vim-css-color'
 
 Plugin 'junegunn/fzf'
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'DavidEGx/ctrlp-smarttabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
@@ -120,8 +117,6 @@ Plugin 'liuchengxu/vista.vim'
 Plugin 'vifm/vifm.vim'
 
 Plugin 'vim-ctrlspace/vim-ctrlspace'
-"Plugin 'thaerkh/vim-workspace'
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
@@ -164,6 +159,19 @@ set inccommand=nosplit
 set switchbuf+=usetab
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 "set sessionoptions=winsize,winpos,terminal,tabpages,sesdir,resize,buffers,blank
+
+let g:python_host_prog = "c:/Python27/python.exe"
+let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Python38-32/python.exe"
+"let g:python3_host_prog = "c:/Python34/python.exe"
+
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsListSnippets = "<c-tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:CtrlSpaceUseTabline = 1
 let g:CtrlSpaceDefaultMappingKey = "<C-space> "
