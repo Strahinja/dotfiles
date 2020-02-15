@@ -229,6 +229,7 @@ let g:coc_global_extensions = [
             \ 'coc-syntax',
             \ 'coc-ultisnips',
             \ 'coc-vetur'
+            \ 'coc-tag'
             \ ]
 
 call airline#parts#define('mode', {
