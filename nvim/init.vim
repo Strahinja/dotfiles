@@ -228,7 +228,7 @@ let g:coc_global_extensions = [
             \ 'coc-sql',
             \ 'coc-syntax',
             \ 'coc-ultisnips',
-            \ 'coc-vetur'
+            \ 'coc-vetur',
             \ 'coc-tag'
             \ ]
 
