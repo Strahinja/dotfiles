@@ -216,6 +216,21 @@ let g:ale_fixers = {
             \ }
 let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
 
+let g:coc_global_extensions = [
+            \ 'coc-css',
+            \ 'coc-emoji',
+            \ 'coc-eslint',
+            \ 'coc-git',
+            \ 'coc-tsserver',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-marketplace',
+            \ 'coc-sql',
+            \ 'coc-syntax',
+            \ 'coc-ultisnips',
+            \ 'coc-vetur'
+            \ ]
+
 call airline#parts#define('mode', {
             \ 'function': 'airline#parts#mode',
             \ 'accent': 'none',
