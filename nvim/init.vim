@@ -43,7 +43,7 @@ nmap <C-Q> <C-Space>c<CR>
 nmap <C-X> <C-Space>lc
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
-nnoremap <leader>p <Plug>(ale_fix)
+nmap <leader>p :ALEFix<CR>
 nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 cabbrev h vertical botright help
