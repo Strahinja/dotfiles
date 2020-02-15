@@ -229,7 +229,8 @@ let g:coc_global_extensions = [
             \ 'coc-syntax',
             \ 'coc-ultisnips',
             \ 'coc-vetur',
-            \ 'coc-tag'
+            \ 'coc-tag',
+            \ 'coc-lines'
             \ ]
 
 call airline#parts#define('mode', {
