@@ -34,6 +34,7 @@ nnoremap <C-S-Tab> :tabp<CR>
 "nmap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :CtrlSpaceGoDown<CR>
 nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
+nmap <C-CR> i<CR><Esc>
 nmap <C-P> <C-Space>O<CR>
 nnoremap <C-/> :FZF<CR>
 nmap <C-S-T> :Tagbar<CR>
@@ -115,6 +116,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'liuchengxu/vista.vim'
 Plugin 'vifm/vifm.vim'
+Plugin 'digitaltoad/vim-pug'
 
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'tpope/vim-surround'
@@ -203,8 +205,9 @@ let g:ale_linters = {
             \ 'javascript': ['eslint'],
             \ 'markdown': ['markdownlint'],
             \ 'typescript': ['tslint'],
-            \ 'vue': ['eslint', 'stylelint'],
-            \ 'vim': ['vint']
+            \ 'vue': ['eslint', 'stylelint', 'puglint'],
+            \ 'vim': ['vint'],
+            \ 'pug': ['puglint']
             \ }
 let g:ale_fixers = {
             \ 'css': ['stylelint'],
@@ -254,7 +257,7 @@ if executable('ag')
     let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
 endif
 
-let g:vue_pre_processors = []
+let g:vue_pre_processors = ['pug', 'sass']
 
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
