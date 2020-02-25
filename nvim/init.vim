@@ -20,6 +20,7 @@ vnoremap <S-Del> "*d
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
+noremap <F4> :NERDTreeToggle<CR>
 "noremap <F4> :CtrlPBuffer<CR>
 noremap <F5> :tabe
 noremap <F6> :vsp
@@ -108,15 +109,16 @@ Plugin 'dense-analysis/ale'
 Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'ap/vim-css-color'
 
-Plugin 'junegunn/fzf'
+"Plugin 'junegunn/fzf'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'liuchengxu/vista.vim'
-Plugin 'vifm/vifm.vim'
+"Plugin 'vifm/vifm.vim'
 Plugin 'digitaltoad/vim-pug'
+Plugin 'preservim/nerdtree'
 
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'tpope/vim-surround'
@@ -193,8 +195,9 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
 
-let g:ale_sign_error = "\uf0e7"
-let g:ale_sign_warning = "\uf071"
+let g:ale_set_signs = 0
+"let g:ale_sign_error = "\uf0e7"
+"let g:ale_sign_warning = "\uf071"
 let g:ale_linter_aliases = {
             \ 'vue': ['vue', 'javascript']
             \ }
@@ -257,6 +260,13 @@ if executable('ag')
     let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
 endif
 
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
+let g:NERDTreeDirArrowExpandable="\u25ba"
+let g:NERDTreeDirArrowCollapsible="\u25bc"
+
 let g:vue_pre_processors = ['pug', 'sass']
 
 let g:gutentags_add_default_project_roots = 0
@@ -293,6 +303,12 @@ let g:gutentags_ctags_exclude = [
 
 "let g:vim_vue_plugin_debug = 1
 "let g:vim_vue_plugin_use_foldexpr = 0
+
+augroup automatic_nerd_tree_startup
+    autocmd!
+    autocmd StdInReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
+augroup END
 
 augroup setup_folding
     autocmd!
