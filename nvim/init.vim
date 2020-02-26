@@ -119,6 +119,7 @@ Plugin 'liuchengxu/vista.vim'
 "Plugin 'vifm/vifm.vim'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'tpope/vim-surround'
@@ -306,8 +307,14 @@ let g:gutentags_ctags_exclude = [
 
 augroup automatic_nerd_tree_startup
     autocmd!
-    autocmd StdInReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
+    "autocmd StdInReadPre * let s:std_in=1
+    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
+    autocmd VimEnter * NERDTree
+augroup END
+
+augroup no_open_in_nerd_tree_window
+    autocmd!
+    autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 augroup END
 
 augroup setup_folding
