@@ -29,6 +29,7 @@ nnoremap <silent> <S-F7> :cclose<CR>
 nnoremap <F8> :OpenTodoList<CR>
 nnoremap <silent> <C-Up> :cp<CR>
 nnoremap <silent> <C-Down> :cn<CR>
+nnoremap <F12> :MarkdownPreview<CR>
 nnoremap <C-Tab> :tabn<CR>
 nnoremap <C-S-Tab> :tabp<CR>
 "nmap <Tab> :bnext<CR>
@@ -196,9 +197,9 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
 
-let g:ale_set_signs = 0
-"let g:ale_sign_error = "\uf0e7"
-"let g:ale_sign_warning = "\uf071"
+let g:ale_set_signs = 1
+let g:ale_sign_error = "\uf0e7"
+let g:ale_sign_warning = "\uf071"
 let g:ale_linter_aliases = {
             \ 'vue': ['vue', 'javascript']
             \ }
@@ -267,6 +268,7 @@ endif
 
 let g:NERDTreeDirArrowExpandable="\u25ba"
 let g:NERDTreeDirArrowCollapsible="\u25bc"
+let g:NERDTreeWinSize = 25
 
 let g:vue_pre_processors = ['pug', 'sass']
 
@@ -307,9 +309,9 @@ let g:gutentags_ctags_exclude = [
 
 augroup automatic_nerd_tree_startup
     autocmd!
-    "autocmd StdInReadPre * let s:std_in=1
-    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
-    autocmd VimEnter * NERDTree
+"    "autocmd StdInReadPre * let s:std_in=1
+"    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
+    autocmd VimEnter * NERDTree | wincmd p
 augroup END
 
 augroup no_open_in_nerd_tree_window
