@@ -17,6 +17,7 @@ command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js"
 
 function! SearchInJSVueFiles()
     let text = input('Search text> ')
+    let @/ = text
     cexpr system('ag --stats -G "vue\|js" ' . text . ' .') | copen
 endfunction
 
