@@ -15,10 +15,12 @@ nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw
 command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js"
             \ "TODO\<bar>FIXME" .') <bar> normal <F7>
 
-function! SearchInJSVueFiles()
+function! IDEGrep()
     let text = input('Search text> ')
     let @/ = text
-    cexpr system('ag --stats -G "vue\|js" ' . text . ' .') | copen
+    let IDEGrepFilesPattern = 'vue|js|sass|html|php'
+    let cmd = 'ag --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
+    cexpr system(cmd) | copen
 endfunction
 
 vnoremap <C-Del> "*d
@@ -45,7 +47,7 @@ nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
 nmap <C-CR> i<CR><Esc>
 nmap <C-P> <C-Space>O<CR>
 "nnoremap <C-/> :FZF<CR>
-nnoremap <C-/> :call SearchInJSVueFiles()<CR>
+nnoremap <C-/> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
 "nmap <C-Q> :bdelete<CR>
 nmap <C-Q> <C-Space>c<CR>
