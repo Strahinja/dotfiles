@@ -1,0 +1,12 @@
+*       text=auto eol=lf
+*.ps    binary
+*.pdf   binary
+*.eps   binary
+*.dvi   binary
+*.png   binary
+*.jpg   binary
+*.gif   binary
+*.gz    binary
+*.zip   binary
+*.tgz   binary
+*.bz2   binary
