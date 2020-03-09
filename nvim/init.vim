@@ -200,11 +200,23 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#ctrlspace#enabled = 1
-let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 1
+let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffers_label = "\ufb18"
+let g:airline#extensions#tabline#tabs_label = "\uf9e8"
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
+call airline#parts#define('mode', {
+            \ 'function': 'airline#parts#mode',
+            \ 'accent': 'none',
+            \ })
+call airline#parts#define('linenr', {
+            \ 'raw': '%{g:airline_symbols.linenr}%4l',
+            \ 'accent': 'none'})
+call airline#parts#define('maxlinenr', {
+            \ 'raw': '/%4L%{g:airline_symbols.maxlinenr}',
+            \ 'accent': 'none'})
 
 let g:ale_set_signs = 1
 let g:ale_sign_error = "\uf0e7"
@@ -249,17 +261,6 @@ let g:coc_global_extensions = [
             \ 'coc-tag',
             \ 'coc-lines'
             \ ]
-
-call airline#parts#define('mode', {
-            \ 'function': 'airline#parts#mode',
-            \ 'accent': 'none',
-            \ })
-call airline#parts#define('linenr', {
-            \ 'raw': '%{g:airline_symbols.linenr}%4l',
-            \ 'accent': 'none'})
-call airline#parts#define('maxlinenr', {
-            \ 'raw': '/%L%{g:airline_symbols.maxlinenr}',
-            \ 'accent': 'none'})
 
 "let g:ctrlp_use_caching = 1
 if executable('rg')
