@@ -40,6 +40,13 @@ nnoremap <silent> <C-Down> :cn<CR>
 nnoremap <F12> :MarkdownPreview<CR>
 nnoremap <C-Tab> :tabn<CR>
 nnoremap <C-S-Tab> :tabp<CR>
+nmap <C-S-Space> i<Space>
+nmap <C-S-Left> :left<CR>
+nmap <C-S-Right> :right<CR>
+nmap <C-S-Up> :center<CR>
+vmap <C-S-Left> :left<CR>gv
+vmap <C-S-Right> :right<CR>gv
+vmap <C-S-Up> :center<CR>gv
 "nmap <Tab> :bnext<CR>
 "nmap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :CtrlSpaceGoDown<CR>
@@ -298,7 +305,7 @@ let g:gutentags_ctags_extra_args = [
 let g:gutentags_ctags_exclude = [
     \ '*.git', '*.svg', '*.hg',
     \ '*/tests/*',
-    \ 'build', 'dist', '*sites/*/files/*',
+    \ 'build', 'dist', '*sites/*/files/*', '.nuxt/*',
     \ 'bin', 'node_modules', 'bower_components',
     \ 'cache', 'compiled', 'docs', 'example',
     \ 'bundle', 'vendor', '*.md', '*.lock.json',
