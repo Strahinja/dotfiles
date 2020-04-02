@@ -17,10 +17,14 @@ command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js"
 
 function! IDEGrep()
     let text = input('Search text> ')
-    let @/ = text
     let IDEGrepFilesPattern = 'vue|js|sass|html|php'
-    let cmd = 'ag --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
-    cexpr system(cmd) | copen
+    if text != ''
+        let @/ = text
+        let cmd = 'ag --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
+        cexpr system(cmd) | copen
+    else
+        echo "\rCanceled search."
+    endif
 endfunction
 
 vnoremap <C-Del> "*d
