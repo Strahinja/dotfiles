@@ -12,8 +12,13 @@ vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 
-command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js"
+command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php"
             \ "TODO\<bar>FIXME" .') <bar> normal <F7>
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
+    \ 'bat --style=numbers --color=always --pager=never --theme=Phosphor {}']}, <bang>0)
+"fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+command! Bd bp\|bd \#
 
 function! IDEGrep()
     let text = input('Search text> ')
@@ -51,23 +56,27 @@ nmap <C-S-Up> :center<CR>
 vmap <C-S-Left> :left<CR>gv
 vmap <C-S-Right> :right<CR>gv
 vmap <C-S-Up> :center<CR>gv
-"nmap <Tab> :bnext<CR>
-"nmap <S-Tab> :bprevious<CR>
-nnoremap <Tab> :CtrlSpaceGoDown<CR>
-nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
+nmap <Tab> :bnext<CR>
+nmap <S-Tab> :bprevious<CR>
+"nnoremap <Tab> :CtrlSpaceGoDown<CR>
+"nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
 nmap <C-CR> i<CR><Esc>
-nmap <C-P> <C-Space>O<CR>
+nmap <C-Space> :Buffers<CR>
+"nmap <C-Space> :CtrlPBuffer<CR>
+"nmap <C-P> <C-Space>O<CR>
+nmap <C-P> :Files<CR>
 "nnoremap <C-/> :FZF<CR>
 nnoremap <C-/> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
 "nmap <C-Q> :bdelete<CR>
-nmap <C-Q> <C-Space>c<CR>
-"nmap <C-X> :tabclose<CR>
-nmap <C-X> <C-Space>lc
+"nmap <C-Q> <C-Space>c<CR>
+nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
+nmap <C-X> :tabclose<CR>
+"nmap <C-X> <C-Space>lc
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
 nmap <leader>p :ALEFix<CR>
-nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
+"nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 cabbrev h vertical botright help
 
@@ -82,6 +91,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/vimfiles/bundle/Vundle.vim
+set runtimepath+=c:/users/strahinja/scoop/shims
 call vundle#begin('~/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -130,7 +140,6 @@ Plugin 'dense-analysis/ale'
 Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'ap/vim-css-color'
 
-"Plugin 'junegunn/fzf'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
@@ -143,8 +152,13 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-Plugin 'vim-ctrlspace/vim-ctrlspace'
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
+"Plugin 'jlanzarotta/bufexplorer'
+"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'DavidEGx/ctrlp-smarttabs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -201,18 +215,18 @@ let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:CtrlSpaceUseTabline = 1
-let g:CtrlSpaceDefaultMappingKey = "<C-space> "
-if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
-let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+"let g:CtrlSpaceUseTabline = 1
+"let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+"if executable("ag")
+    "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+"endif
+"let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#ctrlspace#enabled = 1
-let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
+"let g:airline#extensions#tabline#ctrlspace#enabled = 1
+"let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffers_label = "\ufb18"
 let g:airline#extensions#tabline#tabs_label = "\uf9e8"
@@ -274,15 +288,20 @@ let g:coc_global_extensions = [
             \ 'coc-lines'
             \ ]
 
-"let g:ctrlp_use_caching = 1
-if executable('rg')
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    let g:ctrlp_use_caching = 0
-endif
+let g:ctrlp_extensions = ['smarttabs']
 
+"let g:ctrlp_use_caching = 1
 if executable('ag')
-    let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 endif
+"if executable('rg')
+    "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    "let g:ctrlp_use_caching = 0
+"endif
+
+"if executable('ag')
+    "let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
+"endif
 
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
@@ -298,7 +317,7 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
 "let g:gutentags_trace = 1
 let g:gutentags_project_root = ['package.json', '.git']
-let g:gutentags_cache_dir = 'c:\\progra~2\\vim\\.cache\\vim\\ctags'  "expand('~/.cache/vim/ctags')
+let g:gutentags_cache_dir = 'c:\progra~2\vim\.cache\vim\ctags'  "expand('~/.cache/vim/ctags')
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_missing = 1
@@ -310,7 +329,8 @@ let g:gutentags_ctags_extra_args = [
 let g:gutentags_ctags_exclude = [
     \ '*.git', '*.svg', '*.hg',
     \ '*/tests/*',
-    \ 'build', 'dist', '*sites/*/files/*', '.nuxt/*',
+    \ 'build', 'dist', '*sites/*/files/*', '.nuxt',
+    \ 'static/prezentacije', 'static\prezentacije', 'prezentacije',
     \ 'bin', 'node_modules', 'bower_components',
     \ 'cache', 'compiled', 'docs', 'example',
     \ 'bundle', 'vendor', '*.md', '*.lock.json',
@@ -345,6 +365,11 @@ augroup setup_folding
     autocmd!
     autocmd Syntax c,cpp,vim,xml,html,xhtml,vue,json setlocal foldmethod=syntax
     autocmd Syntax c,cpp,vim,xml,html,xhtml,vue,json normal zR
+augroup END
+
+augroup fzf_no_statusline
+    autocmd! FileType fzf set laststatus=2 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 
 let g:gitgutter_sign_added = "\uf914"
