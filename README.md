@@ -3,7 +3,7 @@ This is a cross-device updatable list of my configuration files.
 
 | Item                | Description                              |
 |:--------------------|:-----------------------------------------|
-| `[bat]`             | [bat][5] configuration                   }
+| `[bat]`             | [bat][5] configuration                   |
 | `[nvim]`            | [Neovim][1] configuration                |
 | `.editorconfig`     | [EditorConfig][2]                        |
 | `.gitattributes`    | [Git attributes configuration][3]        |
