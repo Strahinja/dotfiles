@@ -16,7 +16,7 @@ command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php"
             \ "TODO\<bar>FIXME" .') <bar> normal <F7>
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
-    \ 'bat --style=numbers --color=always --pager=never --theme=Phosphor {}']}, <bang>0)
+    \ 'bat --style=numbers --color=always --pager=never --theme=zenburn {}']}, <bang>0)
 "fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 command! Bd bp\|bd \#
 
@@ -37,6 +37,7 @@ vnoremap <S-Del> "*d
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
+
 noremap <F4> :NERDTreeToggle<CR>
 "noremap <F4> :CtrlPBuffer<CR>
 noremap <F5> :tabe
@@ -46,7 +47,12 @@ nnoremap <silent> <S-F7> :cclose<CR>
 nnoremap <F8> :OpenTodoList<CR>
 nnoremap <silent> <C-Up> :cp<CR>
 nnoremap <silent> <C-Down> :cn<CR>
+nnoremap <F9> :so %<CR>
 nnoremap <F12> :MarkdownPreview<CR>
+" Kebab case
+vmap <silent> <C-=> :s/\([0-9a-z]\)\([A-Z]\)/\1-\l\2/g<CR>:s/\([A-Z]\)/\l\1/g<CR>
+" CamelCase
+vmap <silent> <C--> :s/\([0-9a-z]\)-\([a-z]\)/\1\u\2/g<CR>
 nnoremap <C-Tab> :tabn<CR>
 nnoremap <C-S-Tab> :tabp<CR>
 nmap <C-S-Space> i<Space>
@@ -130,6 +136,26 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'sainnhe/vim-color-lost-shrine'
 "Plugin 'jaredgorski/SpaceCamp'
 Plugin 'elmindreda/vimcolors'
+"Plugin 'drewtempelmeyer/palenight.vim'
+Plugin 'dracula/vim'
+Plugin 'gosukiwi/vim-atom-dark'
+"Plugin 'joshdick/onedark.vim'
+Plugin 'flazz/vim-colorschemes'
+"Plugin 'sheerun/vim-wombat-scheme'
+"Plugin 'maksimr/Lucius2'
+"Plugin 'hukl/Smyck-Color-Scheme'
+"Plugin 'fenetikm/falcon'
+"Plugin 'jnurmine/Zenburn'
+"Plugin 'dim13/smyck.vim'
+"Plugin 'rhysd/vim-color-shiny-white'
+Plugin 'haishanh/night-owl.vim'
+Plugin 'juanedi/predawn.vim'
+Plugin 'fent/vim-frozen'
+Plugin 'ivan-cukic/vim-colors-penultimate'
+Plugin 'demorose/up.vim'
+Plugin 'orthecreedence/void.vim'
+Plugin 'kreeger/benlight'
+
 Plugin 'tpope/vim-characterize'
 "Plugin 'leafOfTree/vim-vue-plugin'
 Plugin 'posva/vim-vue'
@@ -176,7 +202,14 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colors phosphor
+"colorscheme phosphor
+"colorscheme atom-dark
+"colorscheme shiny-white
+"colorscheme distinguished
+colorscheme benlight
+let airlineTheme='distinguished'
+"let airlineTheme='tomorrow'
+
 "set t_md=
 syntax on
 set hidden
@@ -223,7 +256,10 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 "let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='luna'
+"let g:airline_theme='luna'
+"let g:airline_theme='dracula'
+"let g:airline_theme='lucius'
+let g:airline_theme=airlineTheme
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#ctrlspace#enabled = 1
 "let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
