@@ -12,6 +12,9 @@ vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 
+" 
+" -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
+"
 command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php"
             \ "TODO\<bar>FIXME" .') <bar> normal <F7>
 command! -bang -nargs=? -complete=dir Files
@@ -32,12 +35,16 @@ function! IDEGrep()
     endif
 endfunction
 
+" 
+" -,-'-,-'-,-'-,- Shortcuts -,-'-,-'-,-'-,-
+"
 vnoremap <C-Del> "*d
 vnoremap <S-Del> "*d
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
 
+noremap <F3> :NERDTreeFind<CR>
 noremap <F4> :NERDTreeToggle<CR>
 "noremap <F4> :CtrlPBuffer<CR>
 noremap <F5> :tabe
@@ -95,6 +102,9 @@ set helplang=en
 
 filetype off                  " required
 
+" 
+" -,-'-,-'-,-'-,- Plugins -,-'-,-'-,-'-,-
+"
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/vimfiles/bundle/Vundle.vim
 set runtimepath+=c:/users/strahinja/scoop/shims
@@ -156,7 +166,7 @@ Plugin 'demorose/up.vim'
 Plugin 'orthecreedence/void.vim'
 Plugin 'kreeger/benlight'
 
-Plugin 'tpope/vim-characterize'
+Plugin 'chrisbra/unicode.vim'
 "Plugin 'leafOfTree/vim-vue-plugin'
 Plugin 'posva/vim-vue'
 Plugin 'leafgarland/typescript-vim'
@@ -202,6 +212,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" 
+" -,-'-,-'-,-'-,- Colors -,-'-,-'-,-'-,-
+"
 "colorscheme phosphor
 "colorscheme atom-dark
 "colorscheme shiny-white
@@ -210,6 +223,9 @@ colorscheme benlight
 let airlineTheme='distinguished'
 "let airlineTheme='tomorrow'
 
+" 
+" -,-'-,-'-,-'-,- Vanilla -,-'-,-'-,-'-,-
+"
 "set t_md=
 syntax on
 set hidden
@@ -233,8 +249,10 @@ set textwidth=80
 set inccommand=nosplit
 set switchbuf+=usetab
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
-"set sessionoptions=winsize,winpos,terminal,tabpages,sesdir,resize,buffers,blank
 
+" 
+" -,-'-,-'-,-'-,- UltiSnips -,-'-,-'-,-'-,-
+"
 let g:python_host_prog = "c:/Python27/python.exe"
 let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Python38-32/python.exe"
 "let g:python3_host_prog = "c:/Python34/python.exe"
@@ -243,11 +261,12 @@ let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
-"let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-"let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+" 
+" -,-'-,-'-,-'-,- CtrlSpace -,-'-,-'-,-'-,-
+"
 "let g:CtrlSpaceUseTabline = 1
 "let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 "if executable("ag")
@@ -255,20 +274,35 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 "endif
 "let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 
+" 
+" -,-'-,-'-,-'-,- Airline -,-'-,-'-,-'-,-
+"
 let g:airline_powerline_fonts = 1
 "let g:airline_theme='luna'
 "let g:airline_theme='dracula'
 "let g:airline_theme='lucius'
 let g:airline_theme=airlineTheme
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#format = 2
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#error_symbol = "\uf0e7"
+let g:airline#extensions#coc#warning_symbol = "\uf071"
+let g:airline#extensions#gutentags#enabled = 1
+let g:airline#extensions#nerdtree_status = 1
+let g:airline#extensions#quickfix#location_text = "\uf124"
+let g:airline#extensions#quickfix#quickfix_text = "\uf567"
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#ctrlspace#enabled = 1
 "let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffers_label = "\ufb18"
 let g:airline#extensions#tabline#tabs_label = "\uf9e8"
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
+let g:airline_symbols.dirty = "\u26a1"
+let g:airline_symbols.readonly = "\uf023"
 call airline#parts#define('mode', {
             \ 'function': 'airline#parts#mode',
             \ 'accent': 'none',
@@ -280,6 +314,9 @@ call airline#parts#define('maxlinenr', {
             \ 'raw': '/%4L%{g:airline_symbols.maxlinenr}',
             \ 'accent': 'none'})
 
+" 
+" -,-'-,-'-,-'-,- ALE -,-'-,-'-,-'-,-
+"
 let g:ale_set_signs = 1
 let g:ale_sign_error = "\uf0e7"
 let g:ale_sign_warning = "\uf071"
@@ -307,6 +344,9 @@ let g:ale_fixers = {
             \ }
 let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
 
+" 
+" -,-'-,-'-,-'-,- Coc -,-'-,-'-,-'-,-
+"
 let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-emoji',
@@ -339,16 +379,49 @@ endif
     "let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
 "endif
 
+" 
+" -,-'-,-'-,-'-,- NERDTree -,-'-,-'-,-'-,-
+"
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 
+" 
+" -,-'-,-'-,-'-,- NERDTree -,-'-,-'-,-'-,-
+"
 let g:NERDTreeDirArrowExpandable="\u25ba"
 let g:NERDTreeDirArrowCollapsible="\u25bc"
 let g:NERDTreeWinSize = 25
 
+" 
+" -,-'-,-'-,-'-,- vim-vue -,-'-,-'-,-'-,-
+"
 let g:vue_pre_processors = ['pug', 'sass']
+"let g:vim_vue_plugin_debug = 1
+"let g:vim_vue_plugin_use_foldexpr = 0
+let g:ft = ''
+function! NERDCommenter_before()
+    if &ft == 'vue'
+        let g:ft = 'vue'
+        let stack = synstack(line('.'), col('.'))
+        if len(stack) > 0
+            let syn = synIDattr((stack)[0], 'name')
+            if len(syn) > 0
+                exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+            endif
+        endif
+    endif
+endfunction
+function! NERDCommenter_after()
+    if g:ft == 'vue'
+        setf vue
+        let g:ft = ''
+    endif
+endfunction
 
+" 
+" -,-'-,-'-,-'-,- Gutentags -,-'-,-'-,-'-,-
+"
 let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
 "let g:gutentags_trace = 1
@@ -382,9 +455,29 @@ let g:gutentags_ctags_exclude = [
     \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
     \ ]
 
-"let g:vim_vue_plugin_debug = 1
-"let g:vim_vue_plugin_use_foldexpr = 0
+" 
+" -,-'-,-'-,-'-,- Gitgutter -,-'-,-'-,-'-,-
+"
+let g:gitgutter_sign_added = "\uf914"
+let g:gitgutter_sign_modified = "\ufb4e"
+let g:gitgutter_sign_removed = "\ufaac"
+let g:gitgutter_sign_removed_first_line = "\ufaac"
+let g:gitgutter_sign_modified_removed = "\ufbc7"
+"let g:gitgutter_sign_added = "\uf457"
+"let g:gitgutter_sign_modified = "\uf459"
+"let g:gitgutter_sign_removed = "\uf458"
+"let g:gitgutter_sign_removed_first_line = "\uf458"
+"let g:gitgutter_sign_modified_removed = "\uf474"
 
+" 
+" -,-'-,-'-,-'-,- Indentline -,-'-,-'-,-'-,-
+"
+let g:indentLine_color_gui = '#003000'
+let g:indentLine_char = '|'
+
+" 
+" -,-'-,-'-,-'-,- augroups -,-'-,-'-,-'-,-
+"
 augroup automatic_nerd_tree_startup
     autocmd!
 "    "autocmd StdInReadPre * let s:std_in=1
@@ -407,19 +500,4 @@ augroup fzf_no_statusline
     autocmd! FileType fzf set laststatus=2 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
-
-let g:gitgutter_sign_added = "\uf914"
-let g:gitgutter_sign_modified = "\ufb4e"
-let g:gitgutter_sign_removed = "\ufaac"
-let g:gitgutter_sign_removed_first_line = "\ufaac"
-let g:gitgutter_sign_modified_removed = "\ufbc7"
-
-"let g:gitgutter_sign_added = "\uf457"
-"let g:gitgutter_sign_modified = "\uf459"
-"let g:gitgutter_sign_removed = "\uf458"
-"let g:gitgutter_sign_removed_first_line = "\uf458"
-"let g:gitgutter_sign_modified_removed = "\uf474"
-
-let g:indentLine_color_gui = '#003000'
-let g:indentLine_char = '|'
 
