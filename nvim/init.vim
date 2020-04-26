@@ -241,13 +241,16 @@ set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set number
+set relativenumber
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set textwidth=80
+set colorcolumn=80
 set inccommand=nosplit
 set switchbuf+=usetab
+set fillchars=eob:
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 " 
@@ -483,6 +486,14 @@ augroup automatic_nerd_tree_startup
 "    "autocmd StdInReadPre * let s:std_in=1
 "    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
     autocmd VimEnter * NERDTree | wincmd p
+augroup END
+
+augroup number
+    autocmd!
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+    autocmd BufEnter,FocusGained,InsertLeave * if bufname() =~# "^NERD_tree_" 
+                \ || bufname() =~# "^__Tagbar__" | set norelativenumber | else 
+                    \ | echo bufname() | set relativenumber | endif
 augroup END
 
 augroup no_open_in_nerd_tree_window
