@@ -23,12 +23,40 @@ command! -bang -nargs=? -complete=dir Files
 "fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 command! Bd bp\|bd \#
 
+let zenmode = 0
+let zenmode_number = 0
+let zenmode_relativenumber = 0
+function! Zenmode()
+    :Goyo
+    if g:zenmode == 1
+        if g:number == 1
+            set number
+        else
+            set nonumber
+        endif
+
+        if g:relativenumber == 1
+            set relativenumber
+        else
+            set norelativenumber
+        endif
+        let g:zenmode = 0
+    else
+        let g:zenmode = 1
+        let g:number = &number
+        let g:relativenumber = &relativenumber
+        :echo 'g:number = ' . g:number . ', g:relativenumber = ' . g:relativenumber
+        set nonumber
+        set norelativenumber
+    endif
+endfunction
+
 function! IDEGrep()
     let text = input('Search text> ')
     let IDEGrepFilesPattern = 'vue|js|sass|html|php'
     if text != ''
         let @/ = text
-        let cmd = 'ag --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
+        let cmd = 'ag -Q --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
         cexpr system(cmd) | copen
     else
         echo "\rCanceled search."
@@ -89,9 +117,23 @@ nmap <C-X> :tabclose<CR>
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
 nmap <leader>p :ALEFix<CR>
+nmap <leader>Z :call Zenmode()<CR>
 "nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 cabbrev h vertical botright help
+
+" Coc.nvim mappings
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
@@ -175,6 +217,7 @@ Plugin 'honza/vim-snippets' " Snippet definitions for UltiSnips
 Plugin 'dense-analysis/ale'
 Plugin 'neoclide/coc.nvim', {'pinned': 1}
 Plugin 'ap/vim-css-color'
+Plugin 'junegunn/goyo.vim'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
@@ -304,6 +347,9 @@ let g:airline#extensions#tabline#tabs_label = "\uf9e8"
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 let g:airline_symbols.dirty = "\u26a1"
 let g:airline_symbols.readonly = "\uf023"
 call airline#parts#define('mode', {
@@ -332,7 +378,7 @@ let g:ale_linters = {
             \ 'json': ['jsonlint'],
             \ 'javascript': ['eslint'],
             \ 'markdown': ['markdownlint'],
-            \ 'typescript': ['tslint'],
+            \ 'typescript': ['eslint'],
             \ 'vue': ['eslint', 'stylelint', 'puglint'],
             \ 'vim': ['vint'],
             \ 'pug': ['puglint']
@@ -341,11 +387,16 @@ let g:ale_fixers = {
             \ 'css': ['stylelint'],
             \ 'sass': ['stylelint'],
             \ 'json': ['fixjson'],
-            \ 'typescript': ['tslint'],
+            \ 'typescript': ['eslint'],
             \ 'vue': ['eslint', 'stylelint'],
             \ 'javascript': ['eslint']
             \ }
 let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
+
+"
+" -,-'-,-'-,-'-,- Fzf -,-'-,-'-,-'-,-
+" 
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " 
 " -,-'-,-'-,-'-,- Coc -,-'-,-'-,-'-,-
@@ -423,6 +474,11 @@ function! NERDCommenter_after()
 endfunction
 
 " 
+" -,-'-,-'-,-'-,- vim-table-mode -,-'-,-'-,-'-,-
+"
+let g:table_mode_corner = '|'
+
+" 
 " -,-'-,-'-,-'-,- Gutentags -,-'-,-'-,-'-,-
 "
 let g:gutentags_add_default_project_roots = 0
@@ -478,6 +534,64 @@ let g:gitgutter_sign_modified_removed = "\ufbc7"
 let g:indentLine_color_gui = '#003000'
 let g:indentLine_char = '|'
 
+"
+" -,-'-,-'-,-'-,- Tagbar -,-'-,-'-,-'-,-
+" 
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+"let g:tagbar_type_typescript = {                                                  
+  "\ 'ctagsbin' : 'tstags',                                                        
+  "\ 'ctagsargs' : '-f-',                                                           
+  "\ 'kinds': [                                                                     
+    "\ 'e:enums:0:1',                                                               
+    "\ 'f:function:0:1',                                                            
+    "\ 't:typealias:0:1',                                                           
+    "\ 'M:Module:0:1',                                                              
+    "\ 'I:import:0:1',                                                              
+    "\ 'i:interface:0:1',                                                           
+    "\ 'C:class:0:1',                                                               
+    "\ 'm:method:0:1',                                                              
+    "\ 'p:property:0:1',                                                            
+    "\ 'v:variable:0:1',                                                            
+    "\ 'c:const:0:1',                                                              
+  "\ ],                                                                            
+  "\ 'sort' : 0                                                                    
+"\ }
+let g:tagbar_type_typescript = {
+    \ 'ctagstype': 'typescript',
+    \ 'kinds': [
+      \ 'c:class',
+      \ 'n:namespace',
+      \ 'f:function',
+      \ 'G:generator',
+      \ 'v:variable',
+      \ 'm:method',
+      \ 'p:property',
+      \ 'i:interface',
+      \ 'g:enum',
+      \ 't:type',
+      \ 'a:alias',
+    \ ],
+    \'sro': '.',
+      \ 'kind2scope' : {
+      \ 'c' : 'class',
+      \ 'n' : 'namespace',
+      \ 'i' : 'interface',
+      \ 'f' : 'function',
+      \ 'G' : 'generator',
+      \ 'm' : 'method',
+      \ 'p' : 'property',
+      \},
+  \ }
+"let g:tagbar_type_vue = {
+    "\ 'ctags
+
 " 
 " -,-'-,-'-,-'-,- augroups -,-'-,-'-,-'-,-
 "
@@ -493,7 +607,7 @@ augroup number
     autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
     autocmd BufEnter,FocusGained,InsertLeave * if bufname() =~# "^NERD_tree_" 
                 \ || bufname() =~# "^__Tagbar__" | set norelativenumber | else 
-                    \ | echo bufname() | set relativenumber | endif
+                    \ | set relativenumber | endif
 augroup END
 
 augroup no_open_in_nerd_tree_window
