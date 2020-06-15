@@ -29,13 +29,13 @@ let zenmode_relativenumber = 0
 function! Zenmode()
     :Goyo
     if g:zenmode == 1
-        if g:number == 1
+        if g:zenmode_number == 1
             set number
         else
             set nonumber
         endif
 
-        if g:relativenumber == 1
+        if g:zenmode_relativenumber == 1
             set relativenumber
         else
             set norelativenumber
@@ -43,9 +43,9 @@ function! Zenmode()
         let g:zenmode = 0
     else
         let g:zenmode = 1
-        let g:number = &number
-        let g:relativenumber = &relativenumber
-        :echo 'g:number = ' . g:number . ', g:relativenumber = ' . g:relativenumber
+        let g:zenmode_number = &number
+        let g:zenmode_relativenumber = &relativenumber
+        :echo 'g:number = ' . g:zenmode_number . ', g:relativenumber = ' . g:zenmode_relativenumber
         set nonumber
         set norelativenumber
     endif
@@ -99,21 +99,13 @@ vmap <C-S-Right> :right<CR>gv
 vmap <C-S-Up> :center<CR>gv
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
-"nnoremap <Tab> :CtrlSpaceGoDown<CR>
-"nnoremap <S-Tab> :CtrlSpaceGoUp<CR>
 nmap <C-CR> i<CR><Esc>
 nmap <C-Space> :Buffers<CR>
-"nmap <C-Space> :CtrlPBuffer<CR>
-"nmap <C-P> <C-Space>O<CR>
 nmap <C-P> :Files<CR>
-"nnoremap <C-/> :FZF<CR>
 nnoremap <C-/> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
-"nmap <C-Q> :bdelete<CR>
-"nmap <C-Q> <C-Space>c<CR>
 nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
 nmap <C-X> :tabclose<CR>
-"nmap <C-X> <C-Space>lc
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
 nmap <leader>p :ALEFix<CR>
@@ -132,6 +124,7 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -305,7 +298,7 @@ let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Pyth
 
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<leader><tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -440,9 +433,6 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 
-" 
-" -,-'-,-'-,-'-,- NERDTree -,-'-,-'-,-'-,-
-"
 let g:NERDTreeDirArrowExpandable="\u25ba"
 let g:NERDTreeDirArrowCollapsible="\u25bc"
 let g:NERDTreeWinSize = 25
@@ -573,6 +563,7 @@ let g:tagbar_type_typescript = {
       \ 'v:variable',
       \ 'm:method',
       \ 'p:property',
+      \ 'C:const',
       \ 'i:interface',
       \ 'g:enum',
       \ 't:type',
@@ -587,6 +578,7 @@ let g:tagbar_type_typescript = {
       \ 'G' : 'generator',
       \ 'm' : 'method',
       \ 'p' : 'property',
+      \ 'C' : 'const',
       \},
   \ }
 "let g:tagbar_type_vue = {
