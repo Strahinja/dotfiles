@@ -587,11 +587,16 @@ let g:tagbar_type_typescript = {
 " 
 " -,-'-,-'-,-'-,- augroups -,-'-,-'-,-'-,-
 "
-augroup automatic_nerd_tree_startup
-    autocmd!
-"    "autocmd StdInReadPre * let s:std_in=1
-"    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
-    autocmd VimEnter * NERDTree | wincmd p
+"augroup automatic_nerd_tree_startup
+    "autocmd!
+""    "autocmd StdInReadPre * let s:std_in=1
+""    "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | call feedkeys("\<C-W>w") | endif
+    "autocmd VimEnter * NERDTree | wincmd p
+"augroup END
+
+augroup startup_split
+    autocmd VimEnter * :vsplit | execute "normal \<C-W>="
+    autocmd VimResized * execute "normal \<C-W>="
 augroup END
 
 augroup number
