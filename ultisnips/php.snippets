@@ -1,0 +1,29 @@
+snippet 'class model' "PHP class of a model"
+<?php
+
+namespace ${1:namespace};
+
+class ${2:class_name}
+{
+    public static \$${3:variable};
+
+    public static function reset()
+    {
+        self::assign([]);
+    }
+
+
+    public static function assign(\$from)
+    {
+        self::\$${4:$3} = array_key_exists('${5:$3}', \$from) ?  \$from['${6:$3}'] : '';
+    }
+
+    public static function toArray()
+    {
+        return [
+	    '${7:$3}' => self::\$${8:$3},
+        ];
+    }
+}
+endsnippet
+

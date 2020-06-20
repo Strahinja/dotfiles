@@ -5,6 +5,7 @@ This is a cross-device updatable list of my configuration files.
 |:--------------------|:-----------------------------------------|
 | `[bat]`             | [bat][5] configuration                   |
 | `[nvim]`            | [Neovim][1] configuration                |
+| `[ultisnips]`       | [UltiSnips][6] snippets                  |
 | `.editorconfig`     | [EditorConfig][2]                        |
 | `.gitattributes`    | [Git attributes configuration][3]        |
 | `.stylelintrc.json` | [Stylelint][4] configuration             |
@@ -16,3 +17,4 @@ This is a cross-device updatable list of my configuration files.
 [3]: https://git-scm.com/docs/gitattributes
 [4]: https://stylelint.io/user-guide/configure
 [5]: https://github.com/sharkdp/bat
+[6]: https://github.com/SirVer/ultisnips
