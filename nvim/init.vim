@@ -108,11 +108,12 @@ nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
 nmap <C-X> :tabclose<CR>
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
+nnoremap <silent> <leader>c :set cursorline!<CR>
 nmap <leader>p :ALEFix<CR>
 nmap <leader>Z :call Zenmode()<CR>
 "nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
-cabbrev h vertical botright help
+cabbrev h only <bar> vertical botright help
 
 " Coc.nvim mappings
 xmap if <Plug>(coc-funcobj-i)
@@ -131,6 +132,8 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
+"set guifont=FiraMono\ NF:h11:cRUSSIAN:qCLEARTYPE
+"set guifontwide=FiraMono\ NF:h11:cRUSSIAN:qCLEARTYPE
 set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
 set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
 set helplang=en
@@ -521,8 +524,9 @@ let g:gitgutter_sign_modified_removed = "\ufbc7"
 " 
 " -,-'-,-'-,-'-,- Indentline -,-'-,-'-,-'-,-
 "
-let g:indentLine_color_gui = '#003000'
-let g:indentLine_char = '|'
+let g:indentLine_color_gui = '#333333'
+let g:indentLine_char = '⁞'
+"let g:indentLine_char = '|'
 
 "
 " -,-'-,-'-,-'-,- Tagbar -,-'-,-'-,-'-,-
