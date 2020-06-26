@@ -63,6 +63,18 @@ function! IDEGrep()
     endif
 endfunction
 
+let openterm_command = ''
+function! OpenTerm()
+    let g:openterm_command = input('Command> ')
+    if g:openterm_command != ''
+        call feedkeys(":botright 10:split\<CR>:term\<CR>i" . g:openterm_command 
+                \ . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+    else
+        echo "\rCanceled term."
+    endif
+endfunction
+
+
 " 
 " -,-'-,-'-,-'-,- Shortcuts -,-'-,-'-,-'-,-
 "
@@ -110,7 +122,14 @@ nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
 nnoremap <silent> <leader>c :set cursorline!<CR>
 nmap <leader>p :ALEFix<CR>
-nmap <leader>Z :call Zenmode()<CR>
+nnoremap <leader>t :botright 10:split<CR>:term<CR>i
+nnoremap <leader>T :call OpenTerm()<CR>
+nnoremap <leader>yb :botright 10:split<CR>:term<CR>iyarn build<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>yd :botright 10:split<CR>:term<CR>iyarn dev<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>ys :botright 10:split<CR>:term<CR>iyarn start<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>yt :botright 10:split<CR>:term<CR>iyarn test<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>yg :botright 10:split<CR>:term<CR>iyarn generate<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>Z :call Zenmode()<CR>
 "nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 cabbrev h only <bar> vertical botright help
@@ -132,8 +151,12 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
-"set guifont=FiraMono\ NF:h11:cRUSSIAN:qCLEARTYPE
-"set guifontwide=FiraMono\ NF:h11:cRUSSIAN:qCLEARTYPE
+"set guifont=basis33\ NF:h12:cRUSSIAN:qCLEARTYPE
+"set guifontwide=basis33\ NF:h12:cRUSSIAN:qCLEARTYPE
+"set guifont=UbuntuMono\ NF:h14:cRUSSIAN:qCLEARTYPE
+"set guifontwide=UbuntuMono\ NF:h14:cRUSSIAN:qCLEARTYPE
+"set guifont=FiraMono\ NF:h12:cRUSSIAN:qCLEARTYPE
+"set guifontwide=FiraMono\ NF:h12:cRUSSIAN:qCLEARTYPE
 set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
 set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
 set helplang=en
@@ -179,6 +202,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine'
 Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'majutsushi/tagbar'
+Plugin 'enricobacis/vim-airline-clock'
 
 "Plugin 'lithammer/vim-eighties'
 "Plugin 'sainnhe/vim-color-lost-shrine'
@@ -390,9 +414,17 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
 
 "
-" -,-'-,-'-,-'-,- Fzf -,-'-,-'-,-'-,-
+" -,-'-,-'-,-'-,- fzf -,-'-,-'-,-'-,-
 " 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let g:fzf_colors = 
+            \ { 'fg': ['fg', 'Comment'],
+            \ 'bg': ['bg', 'Normal'],
+            \ 'hl': ['fg', 'Normal'],
+            \ 'fg+': ['fg', 'CursorLine', 'CursorColumn', 'Statement'],
+            \ 'hl+': ['fg', 'Statement'],
+            \ 'border': ['fg', 'Normal'],
+            \ 'pointer': ['fg', 'Statement'] }
 
 " 
 " -,-'-,-'-,-'-,- Coc -,-'-,-'-,-'-,-
