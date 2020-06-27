@@ -63,17 +63,33 @@ function! IDEGrep()
     endif
 endfunction
 
-let openterm_command = ''
 function! OpenTerm()
-    let g:openterm_command = input('Command> ')
-    if g:openterm_command != ''
-        call feedkeys(":botright 10:split\<CR>:term\<CR>i" . g:openterm_command 
-                \ . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+    let termbufnr = bufnr('term')
+    echo "termbufnr = " . termbufnr
+    if termbufnr == -1
+        call feedkeys(":botright 10:split\<CR>:term\<CR>:resize 10\<CR>i")
+    else
+        call feedkeys(":botright sbuffer " . termbufnr . "\<CR>:resize 10\<CR>i")
+    endif
+endfunction
+
+function! OpenTermCommand()
+    let openterm_command = input('Command> ')
+    if openterm_command != ''
+        let termbufnr = bufnr('term')
+        echo "termbufnr = " . termbufnr
+        if termbufnr == -1
+            call feedkeys(":botright 10:split\<CR>:term\<CR>:resize 10\<CR>i"
+                        \ . openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+        else
+            call feedkeys(":botright sbuffer " . termbufnr 
+                        \ . "\<CR>:resize 10\<CR>i"
+                        \ . openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+        endif
     else
         echo "\rCanceled term."
     endif
 endfunction
-
 
 " 
 " -,-'-,-'-,-'-,- Shortcuts -,-'-,-'-,-'-,-
@@ -92,9 +108,9 @@ noremap <F6> :vsp
 nnoremap <silent> <F7> :copen<CR>
 nnoremap <silent> <S-F7> :cclose<CR>
 nnoremap <F8> :OpenTodoList<CR>
-nnoremap <silent> <C-Up> :cp<CR>
-nnoremap <silent> <C-Down> :cn<CR>
 nnoremap <F9> :so %<CR>
+nnoremap <silent> <F10> :call OpenTerm()<CR>
+nnoremap <silent> <C-F10> :call OpenTermCommand()<CR>
 nnoremap <F12> :MarkdownPreview<CR>
 " Kebab case
 vmap <silent> <C-=> :s/\([0-9a-z]\)\([A-Z]\)/\1-\l\2/g<CR>:s/\([A-Z]\)/\l\1/g<CR>
@@ -102,6 +118,8 @@ vmap <silent> <C-=> :s/\([0-9a-z]\)\([A-Z]\)/\1-\l\2/g<CR>:s/\([A-Z]\)/\l\1/g<CR
 vmap <silent> <C--> :s/\([0-9a-z]\)-\([a-z]\)/\1\u\2/g<CR>
 nnoremap <C-Tab> :tabn<CR>
 nnoremap <C-S-Tab> :tabp<CR>
+nnoremap <silent> <C-Up> :cp<CR>
+nnoremap <silent> <C-Down> :cn<CR>
 nmap <C-S-Space> i<Space>
 nmap <C-S-Left> :left<CR>
 nmap <C-S-Right> :right<CR>
@@ -120,10 +138,11 @@ nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
 nmap <C-X> :tabclose<CR>
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
+
 nnoremap <silent> <leader>c :set cursorline!<CR>
-nmap <leader>p :ALEFix<CR>
-nnoremap <leader>t :botright 10:split<CR>:term<CR>i
-nnoremap <leader>T :call OpenTerm()<CR>
+nmap <leader>d <Plug>(coc-definition)
+nnoremap <leader>p :ALEFix<CR>
+nmap <leader>r <Plug>(coc-references)
 nnoremap <leader>yb :botright 10:split<CR>:term<CR>iyarn build<CR><C-\><C-N>G<C-W>w
 nnoremap <leader>yd :botright 10:split<CR>:term<CR>iyarn dev<CR><C-\><C-N>G<C-W>w
 nnoremap <leader>ys :botright 10:split<CR>:term<CR>iyarn start<CR><C-\><C-N>G<C-W>w
@@ -132,6 +151,8 @@ nnoremap <leader>yg :botright 10:split<CR>:term<CR>iyarn generate<CR><C-\><C-N>G
 nnoremap <leader>Z :call Zenmode()<CR>
 "nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
+nnoremap <silent><expr> <leader><Tab> "i" . coc#refresh()
+inoremap <silent><expr> <leader><Tab> coc#refresh()
 cabbrev h only <bar> vertical botright help
 
 " Coc.nvim mappings
@@ -311,6 +332,7 @@ set shiftwidth=4
 set expandtab
 set textwidth=80
 set colorcolumn=80
+set cursorline
 set inccommand=nosplit
 set switchbuf+=usetab
 set fillchars=eob:
