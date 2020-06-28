@@ -52,43 +52,46 @@ function! Zenmode()
 endfunction
 
 function! IDEGrep()
-    let text = input('Search text> ')
-    let IDEGrepFilesPattern = 'vue|js|sass|html|php'
-    if text != ''
-        let @/ = text
-        let cmd = 'ag -Q --stats -G "' . IDEGrepFilesPattern . '" ' . text . ' .'
-        cexpr system(cmd) | copen
-    else
-        echo "\rCanceled search."
-    endif
+    :let text = input('Search text> ')
+    :let IDEGrepFilesPattern = 'vue|js|sass|html|php'
+    :if l:text != ''
+        :let @/ = l:text
+        :let cmd = 'ag -Q --stats -G "' . l:IDEGrepFilesPattern . '" ' . l:text . ' .'
+        :cexpr system(l:cmd) | :copen
+    :else
+        :echo "\rCanceled search."
+    :endif
 endfunction
 
 function! OpenTerm()
-    let termbufnr = bufnr('term')
-    echo "termbufnr = " . termbufnr
-    if termbufnr == -1
-        call feedkeys(":botright 10:split\<CR>:term\<CR>:resize 10\<CR>i")
-    else
-        call feedkeys(":botright sbuffer " . termbufnr . "\<CR>:resize 10\<CR>i")
-    endif
+    :let l:termbufnr = bufnr('term')
+    :if l:termbufnr == -1
+        :botright 10:split | :resize 10 | :term 
+        :execute "normal!i"
+    :else
+        :execute "botright sbuffer" l:termbufnr
+        :resize 10 | :execute "normal!i"
+    :endif
 endfunction
 
-function! OpenTermCommand()
-    let openterm_command = input('Command> ')
-    if openterm_command != ''
-        let termbufnr = bufnr('term')
-        echo "termbufnr = " . termbufnr
-        if termbufnr == -1
-            call feedkeys(":botright 10:split\<CR>:term\<CR>:resize 10\<CR>i"
-                        \ . openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
-        else
-            call feedkeys(":botright sbuffer " . termbufnr 
-                        \ . "\<CR>:resize 10\<CR>i"
-                        \ . openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
-        endif
-    else
-        echo "\rCanceled term."
-    endif
+function! OpenTermCommand(command)
+    :if a:command != ''
+        :let l:openterm_command = a:command
+    :else
+        :let l:openterm_command = input('Command> ')
+    :endif
+    :if l:openterm_command != ''
+        :let l:termbufnr = bufnr('term')
+        :if l:termbufnr == -1
+            :botright 10:split | :resize 10 | :term
+            :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+        :else
+            :execute "botright sbuffer" l:termbufnr
+            :resize 10 | :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+        :endif
+    :else
+        :echo "\rCanceled term."
+    :endif
 endfunction
 
 " 
@@ -110,7 +113,7 @@ nnoremap <silent> <S-F7> :cclose<CR>
 nnoremap <F8> :OpenTodoList<CR>
 nnoremap <F9> :so %<CR>
 nnoremap <silent> <F10> :call OpenTerm()<CR>
-nnoremap <silent> <C-F10> :call OpenTermCommand()<CR>
+nnoremap <silent> <C-F10> :call OpenTermCommand('')<CR>
 nnoremap <F12> :MarkdownPreview<CR>
 " Kebab case
 vmap <silent> <C-=> :s/\([0-9a-z]\)\([A-Z]\)/\1-\l\2/g<CR>:s/\([A-Z]\)/\l\1/g<CR>
@@ -143,13 +146,12 @@ nnoremap <silent> <leader>c :set cursorline!<CR>
 nmap <leader>d <Plug>(coc-definition)
 nnoremap <leader>p :ALEFix<CR>
 nmap <leader>r <Plug>(coc-references)
-nnoremap <leader>yb :botright 10:split<CR>:term<CR>iyarn build<CR><C-\><C-N>G<C-W>w
-nnoremap <leader>yd :botright 10:split<CR>:term<CR>iyarn dev<CR><C-\><C-N>G<C-W>w
-nnoremap <leader>ys :botright 10:split<CR>:term<CR>iyarn start<CR><C-\><C-N>G<C-W>w
-nnoremap <leader>yt :botright 10:split<CR>:term<CR>iyarn test<CR><C-\><C-N>G<C-W>w
-nnoremap <leader>yg :botright 10:split<CR>:term<CR>iyarn generate<CR><C-\><C-N>G<C-W>w
+nnoremap <leader>yb :call OpenTermCommand('yarn build')<CR>
+nnoremap <leader>yd :call OpenTermCommand('yarn dev')<CR>
+nnoremap <leader>ys :call OpenTermCommand('yarn start')<CR>
+nnoremap <leader>yt :call OpenTermCommand('yarn test')<CR>
+nnoremap <leader>yg :call OpenTermCommand('yarn generate')<CR>
 nnoremap <leader>Z :call Zenmode()<CR>
-"nnoremap <leader>s :CtrlSpaceSaveWorkspace<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 nnoremap <silent><expr> <leader><Tab> "i" . coc#refresh()
 inoremap <silent><expr> <leader><Tab> coc#refresh()
