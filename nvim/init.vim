@@ -67,9 +67,11 @@ function! OpenTerm()
     :let l:termbufnr = bufnr('term')
     :if l:termbufnr == -1
         :botright 10:split | :resize 10 | :term 
+        :setlocal nonumber norelativenumber
         :execute "normal!i"
     :else
         :execute "botright sbuffer" l:termbufnr
+        :setlocal nonumber norelativenumber
         :resize 10 | :execute "normal!i"
     :endif
 endfunction
@@ -84,9 +86,11 @@ function! OpenTermCommand(command)
         :let l:termbufnr = bufnr('term')
         :if l:termbufnr == -1
             :botright 10:split | :resize 10 | :term
+            :setlocal nonumber norelativenumber
             :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :else
             :execute "botright sbuffer" l:termbufnr
+            :setlocal nonumber norelativenumber
             :resize 10 | :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :endif
     :else
@@ -663,7 +667,7 @@ augroup number
     autocmd!
     autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
     autocmd BufEnter,FocusGained,InsertLeave * if bufname() =~# "^NERD_tree_" 
-                \ || bufname() =~# "^__Tagbar__" | set norelativenumber | else 
+                \ || bufname() =~# "^__Tagbar__" || bufname() =~# "^term:" | set norelativenumber | else 
                     \ | set relativenumber | endif
 augroup END
 
