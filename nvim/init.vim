@@ -67,12 +67,10 @@ function! OpenTerm()
     :let l:termbufnr = bufnr('term')
     :if l:termbufnr == -1
         :botright 10:split | :resize 10 | :term 
-        :setlocal nonumber norelativenumber
-        :execute "normal!i"
+        :setlocal nonumber norelativenumber | :execute "normal!i"
     :else
         :execute "botright sbuffer" l:termbufnr
-        :setlocal nonumber norelativenumber
-        :resize 10 | :execute "normal!i"
+        :setlocal nonumber norelativenumber | :resize 10 | :execute "normal!i"
     :endif
 endfunction
 
@@ -90,8 +88,8 @@ function! OpenTermCommand(command)
             :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :else
             :execute "botright sbuffer" l:termbufnr
-            :setlocal nonumber norelativenumber
-            :resize 10 | :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+            :setlocal nonumber norelativenumber | :resize 10 
+            :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :endif
     :else
         :echo "\rCanceled term."
