@@ -141,6 +141,8 @@ nnoremap <C-/> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
 nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
 nmap <C-X> :tabclose<CR>
+nmap <M--> i<C-k>-N
+imap <M--> <C-k>-N
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
 imap <C-;> <C-k>:9<C-k>"6<Esc>i
 
@@ -176,14 +178,8 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
-"set guifont=basis33\ NF:h12:cRUSSIAN:qCLEARTYPE
-"set guifontwide=basis33\ NF:h12:cRUSSIAN:qCLEARTYPE
-"set guifont=UbuntuMono\ NF:h14:cRUSSIAN:qCLEARTYPE
-"set guifontwide=UbuntuMono\ NF:h14:cRUSSIAN:qCLEARTYPE
-"set guifont=FiraMono\ NF:h12:cRUSSIAN:qCLEARTYPE
-"set guifontwide=FiraMono\ NF:h12:cRUSSIAN:qCLEARTYPE
-set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
-set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qCLEARTYPE
+set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
+set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
 
 filetype off                  " required
