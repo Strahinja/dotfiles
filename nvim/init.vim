@@ -23,33 +23,6 @@ command! -bang -nargs=? -complete=dir Files
 "fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 command! Bd bp\|bd \#
 
-let zenmode = 0
-let zenmode_number = 0
-let zenmode_relativenumber = 0
-function! Zenmode()
-    :Goyo
-    if g:zenmode == 1
-        if g:zenmode_number == 1
-            set number
-        else
-            set nonumber
-        endif
-
-        if g:zenmode_relativenumber == 1
-            set relativenumber
-        else
-            set norelativenumber
-        endif
-        let g:zenmode = 0
-    else
-        let g:zenmode = 1
-        let g:zenmode_number = &number
-        let g:zenmode_relativenumber = &relativenumber
-        :echo 'g:number = ' . g:zenmode_number . ', g:relativenumber = ' . g:zenmode_relativenumber
-        set nonumber
-        set norelativenumber
-    endif
-endfunction
 
 function! IDEGrep()
     :let text = input('Search text> ')
@@ -67,10 +40,12 @@ function! OpenTerm()
     :let l:termbufnr = bufnr('term')
     :if l:termbufnr == -1
         :botright 10:split | :resize 10 | :term 
-        :setlocal nonumber norelativenumber | :execute "normal!i"
+        :setlocal nonumber norelativenumber
+        :execute "normal!i"
     :else
         :execute "botright sbuffer" l:termbufnr
-        :setlocal nonumber norelativenumber | :resize 10 | :execute "normal!i"
+        :setlocal nonumber norelativenumber
+        :resize 10 | :execute "normal!i"
     :endif
 endfunction
 
@@ -88,12 +63,16 @@ function! OpenTermCommand(command)
             :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :else
             :execute "botright sbuffer" l:termbufnr
-            :setlocal nonumber norelativenumber | :resize 10 
-            :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
+            :setlocal nonumber norelativenumber
+            :resize 10 | :call feedkeys("i" . l:openterm_command . "\<CR>\<C-\>\<C-N>G\<C-W>w")
         :endif
     :else
         :echo "\rCanceled term."
     :endif
+endfunction
+
+function! SetLastStatus()
+    set laststatus=2
 endfunction
 
 " 
@@ -140,7 +119,7 @@ nmap <C-P> :Files<CR>
 nnoremap <C-/> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
 nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
-nmap <C-X> :tabclose<CR>
+"nmap <C-X> :tabclose<CR>
 nmap <M--> i<C-k>-N
 imap <M--> <C-k>-N
 nmap <C-;> i<C-k>:9<C-k>"6<Esc>i
@@ -155,7 +134,7 @@ nnoremap <leader>yd :call OpenTermCommand('yarn dev')<CR>
 nnoremap <leader>ys :call OpenTermCommand('yarn start')<CR>
 nnoremap <leader>yt :call OpenTermCommand('yarn test')<CR>
 nnoremap <leader>yg :call OpenTermCommand('yarn generate')<CR>
-nnoremap <leader>Z :call Zenmode()<CR>
+nnoremap <leader>Z :Goyo<CR>
 nnoremap <leader><Space> :nohlsearch<CR>
 nnoremap <silent><expr> <leader><Tab> "i" . coc#refresh()
 inoremap <silent><expr> <leader><Tab> coc#refresh()
@@ -189,7 +168,7 @@ filetype off                  " required
 "
 " set the runtime path to include Vundle and initialize
 set runtimepath+=~/vimfiles/bundle/Vundle.vim
-set runtimepath+=c:/users/strahinja/scoop/shims
+set runtimepath+=~/scoop/shims
 call vundle#begin('~/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -315,7 +294,7 @@ syntax on
 set hidden
 set fileformat=unix
 set fileformats=unix,dos
-set laststatus=2
+call SetLastStatus()
 set showcmd " show leader
 set timeoutlen=3000 " leader timeout
 set guioptions=    " like console vim
@@ -389,6 +368,8 @@ let g:airline#extensions#tabline#tabs_label = "\uf9e8"
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
+let g:airline_left_sep = "\uE0B8"
+let g:airline_right_sep = "\uE0BA"
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -680,4 +661,35 @@ augroup fzf_no_statusline
     autocmd! FileType fzf set laststatus=2 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
+
+function! s:goyo_enter()
+    let g:zenmode_number = &number
+    let g:zenmode_relativenumber = &relativenumber
+    let g:zenmode_scrolloff = &scrolloff
+    set nonumber
+    set norelativenumber
+    let g:airline_disable_statusline = 1
+    set laststatus=0
+    set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+    if g:zenmode_number == 1
+        set number
+    else
+        set nonumber
+    endif
+
+    if g:zenmode_relativenumber == 1
+        set relativenumber
+    else
+        set norelativenumber
+    endif
+    call SetLastStatus()
+    let g:airline_disable_statusline = 0
+    execute "set scrolloff=" . g:zenmode_scrolloff
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
