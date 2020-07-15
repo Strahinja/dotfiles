@@ -1,0 +1,17 @@
+configuration {
+    color-window: "argb:aa4F3650, #f00, #fff";
+    color-normal: "argb:00000000, #aaa, argb:00000000, argb:77000000, #fff";
+    /*color-active: "argb:55ffffff, #aaa, argb:00000000, argb:55ffffff, #fff";*/
+    /*color-urgent: "argb:55ff0000, #aaa, argb:00000000, argb:55ff0000, #fff";*/
+    separator-style: "dotted";
+    width: 100;
+    padding: 400;
+    lines: 10;
+    eh: 1;
+    hide-scrollbar: true;
+    columns: 1;
+    font: "PxPlus_IBM_VGA8 Nerd Font 32";
+}
+
+/* vim:ft=css
+
