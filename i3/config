@@ -205,6 +205,7 @@ bindsym $mod+Shift+X             exec setxkbmap -layout rs && $refresh_i3blocks
 bindsym $mod+Shift+Cyrillic_dzhe exec setxkbmap -layout us && $refresh_i3blocks
 
 exec compton
+exec gnome-terminal
 
 for_window [class=".*"] border pixel 0
 
