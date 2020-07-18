@@ -6,12 +6,6 @@ let s:cpo_save=&cpoptions
 set cpoptions&vim
 noremap! <S-Insert> *
 vnoremap  "*d
-vnoremap gx <Plug>NetrwBrowseXVis
-nnoremap gx <Plug>NetrwBrowseX
-vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
-
 " 
 " -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
 "
@@ -117,6 +111,7 @@ nmap <C-CR> i<CR><Esc>
 nmap <C-Space> :Buffers<CR>
 nmap <C-P> :Files<CR>
 nnoremap <C-/> :call IDEGrep()<CR>
+nnoremap <C-_> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
 nmap <C-Q> :lclose<bar>bp<bar>bd #<CR>
 "nmap <C-X> :tabclose<CR>
@@ -235,7 +230,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets' " Snippet definitions for UltiSnips
 Plugin 'dense-analysis/ale'
-Plugin 'neoclide/coc.nvim', {'pinned': 1}
+Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plugin 'ap/vim-css-color'
 Plugin 'junegunn/goyo.vim'
 
@@ -315,6 +310,7 @@ set cursorline
 set inccommand=nosplit
 set switchbuf+=usetab
 set fillchars=eob:
+cd ~/src/strahinja-org
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 " 
@@ -368,8 +364,8 @@ let g:airline#extensions#tabline#tabs_label = "\uf9e8"
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 let g:airline_exclude_preview = 1
-let g:airline_left_sep = "\uE0B8"
-let g:airline_right_sep = "\uE0BA"
+"let g:airline_left_sep = "\uE0B8"
+"let g:airline_right_sep = "\uE0BA"
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -513,7 +509,7 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_define_advanced_commands = 1
 "let g:gutentags_trace = 1
 let g:gutentags_project_root = ['package.json', '.git']
-let g:gutentags_cache_dir = 'c:\progra~2\vim\.cache\vim\ctags'  "expand('~/.cache/vim/ctags')
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags')
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_missing = 1
