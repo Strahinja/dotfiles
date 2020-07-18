@@ -316,8 +316,8 @@ cd ~/src/strahinja-org
 " 
 " -,-'-,-'-,-'-,- UltiSnips -,-'-,-'-,-'-,-
 "
-let g:python_host_prog = "/usr/share/python"
-let g:python3_host_prog = "/usr/share/python3"
+let g:python_host_prog = "c:/Python27/python.exe"
+let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Python38-32/python.exe"
 "let g:python3_host_prog = "c:/Python34/python.exe"
 
 let g:UltiSnipsUsePythonVersion = 3
