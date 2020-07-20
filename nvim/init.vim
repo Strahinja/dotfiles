@@ -1,4 +1,4 @@
-set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
+set runtimepath^=~/.vim/bundle/Vundle.vim
 let &packpath = &runtimepath
 
 " vim: set ft=vim :
@@ -152,8 +152,12 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
-set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
-set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
+set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
 
 filetype off                  " required
@@ -162,9 +166,9 @@ filetype off                  " required
 " -,-'-,-'-,-'-,- Plugins -,-'-,-'-,-'-,-
 "
 " set the runtime path to include Vundle and initialize
-set runtimepath+=~/vimfiles/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 set runtimepath+=~/scoop/shims
-call vundle#begin('~/vimfiles/bundle/')
+call vundle#begin('~/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -316,8 +320,8 @@ cd ~/src/strahinja-org
 " 
 " -,-'-,-'-,-'-,- UltiSnips -,-'-,-'-,-'-,-
 "
-let g:python_host_prog = "/usr/share/python"
-let g:python3_host_prog = "/usr/share/python3"
+let g:python_host_prog = "/usr/bin/python"
+let g:python3_host_prog = "/usr/bin/python3"
 "let g:python3_host_prog = "c:/Python34/python.exe"
 
 let g:UltiSnipsUsePythonVersion = 3

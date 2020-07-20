@@ -206,6 +206,7 @@ bindsym $mod+Shift+Cyrillic_dzhe exec setxkbmap -layout us && $refresh_i3blocks
 
 exec compton
 exec gnome-terminal
+exec twmnd
 
 for_window [class=".*"] border pixel 0
 
@@ -214,5 +215,8 @@ for_window [class=".*"] border pixel 0
 bar {
         status_command 2>/tmp/i3blocks.err i3blocks
         separator_symbol ▪
+	colors {
+		background #121212
+	}
 }
 
