@@ -1,4 +1,3 @@
-set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
 let &packpath = &runtimepath
 
 " vim: set ft=vim :
@@ -152,123 +151,68 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
 set background=dark
-set guifont=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
-set guifontwide=PxPlus_IBM_VGA8\ NF:h12:cRUSSIAN:qNOANTIALIAS
+set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
 
-filetype off                  " required
+"filetype off                  " required
 
 " 
 " -,-'-,-'-,-'-,- Plugins -,-'-,-'-,-'-,-
 "
-" set the runtime path to include Vundle and initialize
-set runtimepath+=~/vimfiles/bundle/Vundle.vim
-set runtimepath+=~/scoop/shims
-call vundle#begin('~/vimfiles/bundle/')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin(stdpath('data') . '/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tommcdo/vim-fubitive'
+Plug 'jreybert/vimagit'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Yggdroot/indentLine'
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'majutsushi/tagbar'
+Plug 'enricobacis/vim-airline-clock'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'elmindreda/vimcolors'
+Plug 'dracula/vim'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'flazz/vim-colorschemes'
+Plug 'haishanh/night-owl.vim'
+Plug 'juanedi/predawn.vim'
+Plug 'fent/vim-frozen'
+Plug 'ivan-cukic/vim-colors-penultimate'
+Plug 'demorose/up.vim'
+Plug 'orthecreedence/void.vim'
+Plug 'kreeger/benlight'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Doesn't work
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plug 'chrisbra/unicode.vim'
+Plug 'posva/vim-vue'
+Plug 'leafgarland/typescript-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets' " Snippet definitions for UltiSnips
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'ap/vim-css-color'
+Plug 'junegunn/goyo.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tommcdo/vim-fubitive'
-Plugin 'jreybert/vimagit'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Yggdroot/indentLine'
-Plugin 'iamcco/markdown-preview.nvim'
-Plugin 'majutsushi/tagbar'
-Plugin 'enricobacis/vim-airline-clock'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"Plugin 'lithammer/vim-eighties'
-"Plugin 'sainnhe/vim-color-lost-shrine'
-"Plugin 'jaredgorski/SpaceCamp'
-Plugin 'elmindreda/vimcolors'
-"Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'dracula/vim'
-Plugin 'gosukiwi/vim-atom-dark'
-"Plugin 'joshdick/onedark.vim'
-Plugin 'flazz/vim-colorschemes'
-"Plugin 'sheerun/vim-wombat-scheme'
-"Plugin 'maksimr/Lucius2'
-"Plugin 'hukl/Smyck-Color-Scheme'
-"Plugin 'fenetikm/falcon'
-"Plugin 'jnurmine/Zenburn'
-"Plugin 'dim13/smyck.vim'
-"Plugin 'rhysd/vim-color-shiny-white'
-Plugin 'haishanh/night-owl.vim'
-Plugin 'juanedi/predawn.vim'
-Plugin 'fent/vim-frozen'
-Plugin 'ivan-cukic/vim-colors-penultimate'
-Plugin 'demorose/up.vim'
-Plugin 'orthecreedence/void.vim'
-Plugin 'kreeger/benlight'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'DavidEGx/ctrlp-smarttabs'
 
-Plugin 'chrisbra/unicode.vim'
-"Plugin 'leafOfTree/vim-vue-plugin'
-Plugin 'posva/vim-vue'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets' " Snippet definitions for UltiSnips
-Plugin 'dense-analysis/ale'
-Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plugin 'ap/vim-css-color'
-Plugin 'junegunn/goyo.vim'
-
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'godlygeek/tabular'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'liuchengxu/vista.vim'
-"Plugin 'vifm/vifm.vim'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-"Plugin 'vim-ctrlspace/vim-ctrlspace'
-"Plugin 'jlanzarotta/bufexplorer'
-"Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'DavidEGx/ctrlp-smarttabs'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 set autoindent
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+"filetype plugin indent on    " required
 
 " 
 " -,-'-,-'-,-'-,- Colors -,-'-,-'-,-'-,-
@@ -316,9 +260,9 @@ cd ~/src/strahinja-org
 " 
 " -,-'-,-'-,-'-,- UltiSnips -,-'-,-'-,-'-,-
 "
-let g:python_host_prog = "/usr/share/python"
-let g:python3_host_prog = "/usr/share/python3"
-"let g:python3_host_prog = "c:/Python34/python.exe"
+let g:python_host_prog = "/usr/bin/python"
+"let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Python38-32/python.exe"
+let g:python3_host_prog = "/usr/bin/python3"
 
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = "vertical"
@@ -362,10 +306,12 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffers_label = "\ufb18"
 let g:airline#extensions#tabline#tabs_label = "\uf9e8"
 let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#vimagit#enabled = 1
 let g:airline#extensions#vista#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_exclude_preview = 1
-"let g:airline_left_sep = "\uE0B8"
-"let g:airline_right_sep = "\uE0BA"
+"let g:airline_left_sep = "\uE0B8 "
+"let g:airline_right_sep = "\uE0BA "
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif

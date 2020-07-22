@@ -1,4 +1,7 @@
 {
-    "git.enableGutters": false
+    "git.enableGutters": false,
+    "eslint.filetypes": ["typescript"],
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "typescript.suggestionActions.enabled": false
 }
-

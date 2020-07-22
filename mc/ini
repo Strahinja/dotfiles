@@ -85,22 +85,22 @@ mcview_eof=
 skin=default
 
 [Layout]
+message_visible=1
+keybar_visible=1
+xterm_title=1
 output_lines=0
-left_panel_size=85
-top_panel_size=0
-message_visible=true
-keybar_visible=true
-xterm_title=true
-command_prompt=true
-menubar_visible=true
-free_space=true
-horizontal_split=false
-vertical_equal=true
-horizontal_equal=true
+command_prompt=1
+menubar_visible=1
+free_space=1
+horizontal_split=0
+vertical_equal=1
+left_panel_size=119
+horizontal_equal=1
+top_panel_size=1
 
 [Misc]
-timeformat_recent=%b %e %H:%M
-timeformat_old=%b %e  %Y
+timeformat_recent=%e. %b. у %H:%M
+timeformat_old=%e. %b. %Y.
 ftp_proxy_host=gate
 ftpfs_password=anonymous@
 display_codepage=UTF-8
@@ -136,8 +136,11 @@ torben_fj_mode=false
 quick_search_mode=2
 select_flags=6
 
+[HotlistConfig]
+expanded_view_of_groups=0
+
 [Panelize]
-Find *.orig after patching=find . -name \\*.orig -print
-Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
-Find rejects after patching=find . -name \\*.rej -print
-Modified git files=git ls-files --modified
+Измењене датотеке гита=git ls-files --modified
+Нађи ПКИБ и ПГИБ програме=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
+Нађи одбијене исправке после крпљења=find . -name \\*.rej -print
+Нађи „*.orig“ после крпљења=find . -name \\*.orig -print
