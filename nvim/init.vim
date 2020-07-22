@@ -214,7 +214,7 @@ Plug 'DavidEGx/ctrlp-smarttabs'
 
 call plug#end()            " required
 set autoindent
-"filetype plugin indent on    " required
+filetype plugin indent on    " required
 
 " 
 " -,-'-,-'-,-'-,- Colors -,-'-,-'-,-'-,-
