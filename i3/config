@@ -115,7 +115,7 @@ bindsym $mod+Cyrillic_es layout stacking
 bindsym $mod+Cyrillic_nje layout tabbed
 bindsym $mod+Cyrillic_ie layout toggle split
 
-bindsym Control+Print exec gnome-screenshot -i
+bindsym Control+Print exec "gnome-screenshot -i"
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
