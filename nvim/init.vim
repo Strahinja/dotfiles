@@ -153,6 +153,8 @@ unlet s:cpo_save
 set background=dark
 set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
 
 "filetype off                  " required
@@ -261,7 +263,6 @@ cd ~/src/strahinja-org
 " -,-'-,-'-,-'-,- UltiSnips -,-'-,-'-,-'-,-
 "
 let g:python_host_prog = "/usr/bin/python"
-"let g:python3_host_prog = "C:/Users/Strahinja/AppData/Local/Programs/Python/Python38-32/python.exe"
 let g:python3_host_prog = "/usr/bin/python3"
 
 let g:UltiSnipsUsePythonVersion = 3
