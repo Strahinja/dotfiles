@@ -204,7 +204,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec setxkbmap us
+exec "setxkbmap us"
 
 #bindsym $mod+bracketleft exec setxkbmap -layout us
 #bindsym $mod+Cyrillic_sha exec setxkbmap -layout us && $refresh_i3blocks
