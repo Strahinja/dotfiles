@@ -92,7 +92,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 export PATH=$PATH:/home/strajder/.yarn/bin
-export QT_STYLE_OVERRIDE=kvantum
+#export QT_STYLE_OVERRIDE=vimix-dark
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # some more ls aliases
 alias ll='ls -alF'
