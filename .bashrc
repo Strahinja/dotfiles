@@ -56,7 +56,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if false; then
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS1='\[\e[48;2;22;93;0m\]\[\e[38;2;120;220;120m\] \u@\h \[\e[48;2;10;55;0m\]\[\e[38;2;22;93;0m\]\[\e[37m\]\[\e[48;2;10;55;0m\] \w \$ \[\e[00m\]\[\e[38;2;10;55;0m\]\[\e[00m\] '
@@ -64,17 +63,16 @@ else
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     PS1='${debian_chroot:+($debian_chroot)}\u@\h  \w \$  '
 fi
-fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#    ;;
+#*)
+#    ;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

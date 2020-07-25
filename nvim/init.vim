@@ -3,8 +3,10 @@ let &packpath = &runtimepath
 " vim: set ft=vim :
 let s:cpo_save=&cpoptions
 set cpoptions&vim
+noremap! <C-Insert> "+y
 noremap! <S-Insert> *
 vnoremap  "*d
+
 " 
 " -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
 "
