@@ -92,7 +92,12 @@ echo
 fortune
 echo
 
+[ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
+
 export EDITOR=nvim
+export DENO_INSTALL="/home/strajder/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 #export GTK_IM_MODULE=xim
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=xim
