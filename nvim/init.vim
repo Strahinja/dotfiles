@@ -152,9 +152,10 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
-set background=dark
-set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
-set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
+set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h10:cRUSSIAN:qNOANTIALIAS
+set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h10:cRUSSIAN:qNOANTIALIAS
 "set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
@@ -346,6 +347,7 @@ let g:ale_linters = {
             \ 'json': ['jsonlint'],
             \ 'javascript': ['eslint'],
             \ 'markdown': ['markdownlint'],
+            \ 'python': ['pylint'],
             \ 'typescript': ['eslint'],
             \ 'vue': ['eslint', 'stylelint', 'puglint'],
             \ 'vim': ['vint'],
@@ -355,6 +357,7 @@ let g:ale_fixers = {
             \ 'css': ['stylelint'],
             \ 'sass': ['stylelint'],
             \ 'json': ['fixjson'],
+            \ 'python': ['autopep8'],
             \ 'typescript': ['eslint'],
             \ 'vue': ['eslint', 'stylelint'],
             \ 'javascript': ['eslint']
@@ -386,6 +389,7 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-marketplace',
+            \ 'coc-python',
             \ 'coc-sql',
             \ 'coc-syntax',
             \ 'coc-ultisnips',
