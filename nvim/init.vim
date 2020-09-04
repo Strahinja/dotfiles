@@ -242,7 +242,7 @@ call SetLastStatus()
 set showcmd " show leader
 set timeoutlen=3000 " leader timeout
 set guioptions=    " like console vim
-set columns=162 " 2 split buffers
+"set columns=162 " 2 split buffers
 set lines=999
 set encoding=utf-8
 set termencoding=utf-8
@@ -423,6 +423,7 @@ endif
 let g:NERDTreeDirArrowExpandable="\u25ba"
 let g:NERDTreeDirArrowCollapsible="\u25bc"
 let g:NERDTreeWinSize = 25
+let g:NERDTreeGitStatusLogLevel = 3
 
 " 
 " -,-'-,-'-,-'-,- vim-vue -,-'-,-'-,-'-,-

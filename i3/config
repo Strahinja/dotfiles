@@ -61,7 +61,8 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec lxterminal
-bindsym $mod+Return exec "env XDG_CURRENT_DESKTOP=GNOME gnome-terminal"
+#bindsym $mod+Return exec "env XDG_CURRENT_DESKTOP=GNOME gnome-terminal"
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -171,9 +172,12 @@ set $ws10 "10"
 #bind program to workspace
 #assign [class="lxterminal"] $ws1
 #for_window [class="lxterminal"] focus
-assign [class="Gnome-terminal"] $ws1
-for_window [class="Gnome-terminal"] focus
-for_window [class="Gnome-terminal"] border pixel 0
+#assign [class="Gnome-terminal"] $ws1
+#for_window [class="Gnome-terminal"] focus
+#for_window [class="Gnome-terminal"] border pixel 0
+assign [class="st"] $ws1
+for_window [class="st"] focus
+for_window [class="st"] border pixel 0
 #assign [class="(?i)midori"] $ws2
 #for_window [class=(?i)midori] focus
 assign [class="n?vim?(-qt)?"] $ws2
@@ -181,8 +185,9 @@ for_window [class=n?vim?(-qt)?] focus
 for_window [class=n?vim?(-qt)?] border pixel 0
 #assign [class="Pcmanfm"] $ws3
 #for_window [class=Pcmanfm] focus
-assign [class="Vivaldi"] $ws3
-for_window [class=Vivaldi] focus
+for_window [title="[Vv]ivaldi(-stable)?"] move to workspace $ws3
+for_window [title="[Vv]ivaldi(-stable)?"] focus
+for_window [title="[Vv]ivaldi(-stable)?"] border pixel 0
 assign [class="Caprine"] $ws4
 for_window [class=Caprine] focus
 for_window [class=Caprine] border pixel 0
@@ -202,7 +207,8 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 #exec --no-startup-id /usr/bin/dunst
 #exec compton
 #exec xcompmgr -fFn
-exec --no-startup-id "env XDG_CURRENT_DESKTOP=GNOME gnome-terminal"
+#exec --no-startup-id "env XDG_CURRENT_DESKTOP=GNOME gnome-terminal"
+exec --no-startup-id st
 exec --no-startup-id "/usr/bin/pidof twmnd >/dev/null || /usr/bin/twmnd"
 #exec --no-startup-id "ibus-daemon -d -r"
 exec --no-startup-id "setxkbmap -layout us,rs -option grp:alt_shift_toggle"
@@ -217,6 +223,7 @@ for_window [class="Geany" instance="Geany"] floating enable
 for_window [class="Xsane" instance="xsane"] floating enable
 for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="calamares"] floating enable
+for_window [title="^Developer Tools"] floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
