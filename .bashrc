@@ -96,6 +96,7 @@ echo
 
 export EDITOR=nvim
 export DENO_INSTALL="/home/strajder/.deno"
+export PATH="/usr/local/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
 

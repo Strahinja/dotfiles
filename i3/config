@@ -211,8 +211,8 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 exec --no-startup-id st
 exec --no-startup-id "/usr/bin/pidof twmnd >/dev/null || /usr/bin/twmnd"
 #exec --no-startup-id "ibus-daemon -d -r"
-exec --no-startup-id "setxkbmap -layout us,rs -option grp:alt_shift_toggle"
-exec --no-startup-id nohup udiskie >/dev/null 2>/dev/null &
+exec --no-startup-id setxkbmap -layout us,rs -option grp:alt_shift_toggle
+#exec --no-startup-id nohup udiskie >/dev/null 2>/dev/null
 
 # set floating for apps needing it
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
@@ -277,8 +277,10 @@ bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+Shift+p exec loginctl poweroff
-bindsym $mod+Shift+b exec loginctl reboot
+#bindsym $mod+Shift+p exec loginctl poweroff
+#bindsym $mod+Shift+b exec loginctl reboot
+bindsym $mod+Shift+p exec "/usr/sbin/shutdown -h now"
+bindsym $mod+Shift+b exec /usr/sbin/reboot
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
