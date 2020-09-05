@@ -277,10 +277,10 @@ bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-#bindsym $mod+Shift+p exec loginctl poweroff
-#bindsym $mod+Shift+b exec loginctl reboot
-bindsym $mod+Shift+p exec "/usr/sbin/shutdown -h now"
-bindsym $mod+Shift+b exec /usr/sbin/reboot
+bindsym $mod+Shift+p exec loginctl poweroff
+bindsym $mod+Shift+b exec loginctl reboot
+#bindsym $mod+Shift+p exec "/usr/sbin/shutdown -h now"
+#bindsym $mod+Shift+b exec /usr/sbin/reboot
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -319,13 +319,13 @@ bindsym $mod+Shift+Cyrillic_dzhe exec "setxkbmap -layout us,rs -option grp:alt_s
 
 #for_window [class=".*"] border pixel 0
 #set $bg-color               #292d35
+set $border-color           #121212
 set $bg-color               #121212
-set $inactive-bg-color      #2f343f
-set $text-color             #f3f4f5
-set $border-color           #4c515d
-set $inactive-border-color  #2f343f
-set $inactive-text-color    #676e7d
-set $urgent-bg-color        #e53935
+set $text-color             #ffffff
+set $inactive-border-color  #1e1e1e
+set $inactive-bg-color      #1e1e1e
+set $inactive-text-color    #677567
+set $urgent-bg-color        #ff5252
 set $indicator-color        #a0a0a0
 
 # set window colors
@@ -355,12 +355,12 @@ bar {
 #                          border   background  text
         #focused_workspace  #0088CC  #0088CC     #ffffff
         #focused_workspace  #344334  #344334     #ffffff
-        focused_workspace  #005005  #005005     #ffffff
+        focused_workspace  #344334  #344334     #ffffff
         #focused_workspace  #677567  #677567     #ffffff
         active_workspace   #333333  #333333     #ffffff
-        inactive_workspace #1a1a1a  #333333     #888888
+        inactive_workspace #121212  #121212     #677567
         #urgent_workspace   #2f343a  #900000     #ffffff
-        urgent_workspace   #ffffff  #2f343a     #ffffff
+        urgent_workspace   #ff5252  #ff5252     #ffffff
     }
 }
 
