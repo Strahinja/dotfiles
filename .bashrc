@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# vi mode in Bash
+#set -o vi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -93,6 +96,8 @@ fortune
 echo
 
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
+
+alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 
 export EDITOR=nvim
 export DENO_INSTALL="/home/strajder/.deno"

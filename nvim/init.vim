@@ -10,7 +10,7 @@ vnoremap  "*d
 " 
 " -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
 "
-command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php"
+command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php\<bar>c\<bar>h"
             \ "TODO\<bar>FIXME" .') <bar> normal <F7>
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
@@ -111,6 +111,7 @@ nmap <S-Tab> :bprevious<CR>
 nmap <C-CR> i<CR><Esc>
 nmap <C-Space> :Buffers<CR>
 nmap <C-P> :Files<CR>
+nmap <C-M-P> :Commands<CR>
 nnoremap <C-/> :call IDEGrep()<CR>
 nnoremap <C-_> :call IDEGrep()<CR>
 nmap <C-S-T> :Tagbar<CR>
@@ -154,8 +155,8 @@ let &cpoptions=s:cpo_save
 unlet s:cpo_save
 "set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
-set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h10:cRUSSIAN:qNOANTIALIAS
-set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h10:cRUSSIAN:qNOANTIALIAS
+set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
@@ -243,7 +244,7 @@ set showcmd " show leader
 set timeoutlen=3000 " leader timeout
 set guioptions=    " like console vim
 "set columns=162 " 2 split buffers
-set lines=999
+"set lines=999
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -342,6 +343,8 @@ let g:ale_linter_aliases = {
             \ 'vue': ['vue', 'javascript']
             \ }
 let g:ale_linters = {
+            \ 'c': ['gcc'],
+            \ 'cpp': ['gcc'],
             \ 'css': ['stylelint'],
             \ 'sass': ['sasslint'],
             \ 'json': ['jsonlint'],
@@ -354,6 +357,8 @@ let g:ale_linters = {
             \ 'pug': ['puglint']
             \ }
 let g:ale_fixers = {
+            \ 'c': ['astyle'],
+            \ 'cpp': ['astyle'],
             \ 'css': ['stylelint'],
             \ 'sass': ['stylelint'],
             \ 'json': ['fixjson'],
