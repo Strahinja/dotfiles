@@ -21,7 +21,7 @@ command! Bd bp\|bd \#
 
 function! IDEGrep()
     :let text = input('Search text> ')
-    :let IDEGrepFilesPattern = 'vue|js|sass|html|php'
+    :let IDEGrepFilesPattern = 'vue|js|sass|html|php|c|h'
     :if l:text != ''
         :let @/ = l:text
         :let cmd = 'ag -Q --stats -G "' . l:IDEGrepFilesPattern . '" ' . l:text . ' .'
@@ -367,6 +367,7 @@ let g:ale_fixers = {
             \ 'vue': ['eslint', 'stylelint'],
             \ 'javascript': ['eslint']
             \ }
+"let g:ale_javascript_prettier_options="--tab-width 4"
 let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
 
 "

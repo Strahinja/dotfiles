@@ -97,8 +97,6 @@ echo
 
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
 
-alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
-
 export EDITOR=nvim
 export DENO_INSTALL="/home/strajder/.deno"
 export PATH="/usr/local/bin:$PATH"
@@ -106,6 +104,9 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
 
 export GPG_TTY=$(tty)
+
+#alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
+alias ntpsync="sudo chronyc makestep"
 
 #export GTK_IM_MODULE=xim
 #export XMODIFIERS=@im=ibus
