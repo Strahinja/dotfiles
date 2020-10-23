@@ -153,10 +153,10 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
-"set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
-"set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
-set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
-set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
+set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
+"set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 set helplang=en
@@ -228,6 +228,7 @@ filetype plugin indent on    " required
 "colorscheme shiny-white
 "colorscheme distinguished
 colorscheme benlight
+"colorscheme bluechia
 let airlineTheme='distinguished'
 "let airlineTheme='tomorrow'
 
@@ -368,7 +369,7 @@ let g:ale_fixers = {
             \ 'javascript': ['eslint']
             \ }
 "let g:ale_javascript_prettier_options="--tab-width 4"
-let g:ale_fix_on_save = 1   " Careful, interaction with prettier below
+let g:ale_fix_on_save = 0   " Careful, interaction with prettier below
 
 "
 " -,-'-,-'-,-'-,- fzf -,-'-,-'-,-'-,-
