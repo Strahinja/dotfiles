@@ -153,12 +153,16 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 let &cpoptions=s:cpo_save
 unlet s:cpo_save
-set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
-set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
+set guifont=xos4\ Terminus:h10:cRUSSIAN:qNOANTIALIAS
+set guifontwide=xos4\ Terminus:h10:cRUSSIAN:qNOANTIALIAS
+"set guifont=cozette:h9:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=cozette:h9:cRUSSIAN:qNOANTIALIAS
 "set guifont=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=PxPlus_IBM_VGA8\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifont=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
 "set guifontwide=FiraCode\ Nerd\ Font:h12:cRUSSIAN:qNOANTIALIAS
+"set guifont=Inconsolata:h10:b:cRUSSIAN:qNOANTIALIAS
+"set guifontwide=Inconsolata:h10:b:cRUSSIAN:qNOANTIALIAS
 set helplang=en
 
 "filetype off                  " required
@@ -169,8 +173,8 @@ set helplang=en
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'tommcdo/vim-fubitive'
-Plug 'jreybert/vimagit'
+"Plug 'tommcdo/vim-fubitive'
+"Plug 'jreybert/vimagit'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
@@ -178,18 +182,17 @@ Plug 'iamcco/markdown-preview.nvim'
 Plug 'majutsushi/tagbar'
 Plug 'enricobacis/vim-airline-clock'
 
-Plug 'elmindreda/vimcolors'
-Plug 'dracula/vim'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'flazz/vim-colorschemes'
-Plug 'haishanh/night-owl.vim'
-Plug 'juanedi/predawn.vim'
-Plug 'fent/vim-frozen'
-Plug 'ivan-cukic/vim-colors-penultimate'
-Plug 'demorose/up.vim'
-Plug 'orthecreedence/void.vim'
+"Plug 'elmindreda/vimcolors'
+"Plug 'dracula/vim'
+"Plug 'gosukiwi/vim-atom-dark'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'haishanh/night-owl.vim'
+"Plug 'juanedi/predawn.vim'
+"Plug 'fent/vim-frozen'
+"Plug 'ivan-cukic/vim-colors-penultimate'
+"Plug 'demorose/up.vim'
+"Plug 'orthecreedence/void.vim'
 Plug 'kreeger/benlight'
-
 Plug 'chrisbra/unicode.vim'
 Plug 'posva/vim-vue'
 Plug 'leafgarland/typescript-vim'
@@ -214,7 +217,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'DavidEGx/ctrlp-smarttabs'
+"Plug 'DavidEGx/ctrlp-smarttabs'
 
 call plug#end()            " required
 set autoindent
@@ -258,10 +261,11 @@ set expandtab
 set textwidth=80
 set colorcolumn=80
 set cursorline
-set inccommand=nosplit
+" Hangs up Nvim, commented out
+"set inccommand=nosplit
 set switchbuf+=usetab
 set fillchars=eob:
-cd ~/src/strahinja-org
+"cd ~/src/strahinja-org
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
 " 
@@ -397,6 +401,7 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-marketplace',
             \ 'coc-python',
+            \ 'coc-sh',
             \ 'coc-sql',
             \ 'coc-syntax',
             \ 'coc-ultisnips',

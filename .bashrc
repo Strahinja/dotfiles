@@ -105,6 +105,8 @@ export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
 
 export GPG_TTY=$(tty)
 
+export CARGO_HOME="${HOME}/.cargo"
+
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 alias ntpsync="sudo chronyc makestep"
 
