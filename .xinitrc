@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xset fp+ /usr/local/share/fonts/nerdfonts
+xset fp+ /usr/local/share/fonts/terminus
+xset fp rehash
+
+exec dwm

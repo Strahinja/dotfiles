@@ -98,6 +98,7 @@ echo
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
 
 export EDITOR=nvim
+export BROWSER=surf
 export DENO_INSTALL="/home/strajder/.deno"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -109,6 +110,7 @@ export CARGO_HOME="${HOME}/.cargo"
 
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 alias ntpsync="sudo chronyc makestep"
+alias packagemenu="yay -Pc | awk '{print \$1 \" (\" \$2 \")\"}' | dmenu"
 
 #export GTK_IM_MODULE=xim
 #export XMODIFIERS=@im=ibus
