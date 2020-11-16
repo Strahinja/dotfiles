@@ -1,0 +1,6 @@
+exec:curl https://css-tricks.com/feed/|||
+exec:curl https://news.vuejs.org/feed.xml|||
+exec:curl https://vuejsdevelopers.com/feed.xml|||
+exec:curl https://www.aintitcool.com/node/feed/coolnews/|Ain't It Cool News CoolNews Feed||
+exec:curl https://artixlinux.org/feed.php|||
+exec:curl https://lukesmith.xyz/rss.xml|The Latest from Luke||
