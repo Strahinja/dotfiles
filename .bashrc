@@ -98,20 +98,22 @@ echo
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
-export EDITOR=nvim
+export EDITOR=vim
+export PAGER=less
 export BROWSER=surf
 export DENO_INSTALL="/home/strajder/.deno"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="/home/strajder/.local/bin:$PATH"
+export TZ="Europe/Belgrade"
 
 export GPG_TTY=$(tty)
-
 export CARGO_HOME="${HOME}/.cargo"
 
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 alias ntpsync="sudo chronyc makestep"
+alias packagemenu="yay -Pc | awk '{print \$1 \" (\" \$2 \")\"}' | dmenu"
 
 #export GTK_IM_MODULE=xim
 #export XMODIFIERS=@im=ibus
