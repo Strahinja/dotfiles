@@ -96,12 +96,15 @@ fortune
 echo
 
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 export EDITOR=nvim
+export BROWSER=surf
 export DENO_INSTALL="/home/strajder/.deno"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="/home/strajder/.local/bin:$PATH"
 
 export GPG_TTY=$(tty)
 
