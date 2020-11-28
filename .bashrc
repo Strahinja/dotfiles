@@ -112,6 +112,8 @@ export GPG_TTY=$(tty)
 export CARGO_HOME="${HOME}/.cargo"
 export PASSWORD_STORE_X_SELECTION=primary
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 alias ntpsync="sudo chronyc makestep"
 alias packagemenu="yay -Pc | awk '{print \$1 \" (\" \$2 \")\"}' | dmenu"
