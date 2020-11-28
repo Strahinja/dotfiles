@@ -1,3 +1,4 @@
+exec:curl --cookie /home/strajder/.surf/cookies.txt https://www.reddit.com/.rss|||xsltproc /home/strajder/.local/bin/atom2rss -
 exec:curl https://css-tricks.com/feed/|||
 exec:curl https://news.vuejs.org/feed.xml|||
 exec:curl https://vuejsdevelopers.com/feed.xml|||

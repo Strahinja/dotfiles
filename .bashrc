@@ -110,11 +110,14 @@ export TZ="Europe/Belgrade"
 
 export GPG_TTY=$(tty)
 export CARGO_HOME="${HOME}/.cargo"
+export PASSWORD_STORE_X_SELECTION=primary
 
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 alias ntpsync="sudo chronyc makestep"
 alias packagemenu="yay -Pc | awk '{print \$1 \" (\" \$2 \")\"}' | dmenu"
+alias vib='firejail --profile=Viber /opt/viber/Viber'
 
 #export GTK_IM_MODULE=xim
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=xim
+
