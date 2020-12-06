@@ -67,7 +67,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -98,32 +98,6 @@ echo
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
-export BROWSER=surf
-export DENO_INSTALL="/home/strajder/.deno"
-export EDITOR=vim
-export HIGHLIGHT_OUT_FORMAT=xterm256
-export HIGHLIGHT_STYLE=duotone-dark-forest
-export LESS=" -F -R"
-export LESSOPEN="| $(which highlight) %s -s ${HIGHLIGHT_STYLE} --out-format=${HIGHLIGHT_OUT_FORMAT}"
-export PAGER=less
-export PATH="/usr/local/bin:$PATH"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"
-export PATH="/home/strajder/.local/bin:$PATH"
-export TZ="Europe/Belgrade"
-
-export GPG_TTY=$(tty)
-export CARGO_HOME="${HOME}/.cargo"
-export PASSWORD_STORE_X_SELECTION=primary
-
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-#alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
-alias ntpsync="sudo chronyc makestep"
-alias packagemenu="yay -Pc | awk '{print \$1 \" (\" \$2 \")\"}' | dmenu"
-alias vib='firejail --profile=Viber /opt/viber/Viber'
-
-#export GTK_IM_MODULE=xim
-#export XMODIFIERS=@im=ibus
-#export QT_IM_MODULE=xim
+# environment variables
+[ -f ~/.bash_env ] && . ~/.bash_env
 

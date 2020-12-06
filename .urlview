@@ -1,2 +1,1 @@
-COMMAND surf
-
+COMMAND $BROWSER
