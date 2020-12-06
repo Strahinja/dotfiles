@@ -98,10 +98,14 @@ echo
 [ -f ~/.config/spotifyd/env-vars.sh ] && source ~/.config/spotifyd/env-vars.sh
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
-export EDITOR=vim
-export PAGER=less
 export BROWSER=surf
 export DENO_INSTALL="/home/strajder/.deno"
+export EDITOR=vim
+export HIGHLIGHT_OUT_FORMAT=xterm256
+export HIGHLIGHT_STYLE=duotone-dark-forest
+export LESS=" -F -R"
+export LESSOPEN="| $(which highlight) %s -s ${HIGHLIGHT_STYLE} --out-format=${HIGHLIGHT_OUT_FORMAT}"
+export PAGER=less
 export PATH="/usr/local/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/strajder/.gem/ruby/2.7.0/bin:$PATH"

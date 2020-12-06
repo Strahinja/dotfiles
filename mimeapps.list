@@ -1,0 +1,13 @@
+
+[Default Applications]
+application/ps=zathura.desktop
+application/postscript=zathura.desktop
+application/pdf=zathura.desktop
+text/html=surf.desktop
+text/xml=surf.desktop
+x-scheme-handler/http=surf.desktop
+x-scheme-handler/https=surf.desktop
+x-scheme-handler/ftp=surf.desktop
+video/mp4=mpv.desktop
+x-scheme-handler/viber=viber.desktop
+
