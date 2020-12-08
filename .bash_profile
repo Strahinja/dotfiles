@@ -4,4 +4,4 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-shopt -q login_shell && pkill gpg && startx
+shopt -q login_shell && $(pkill gpg; startx)
