@@ -9,6 +9,7 @@ export GIT_PAGER=less
 export GPG_TTY=$(tty)
 export HIGHLIGHT_OUT_FORMAT=xterm256
 export HIGHLIGHT_STYLE=duotone-dark-forest
+export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 export LESS="-F -R"
 export LESSOPEN="| $(which highlight) %s -s ${HIGHLIGHT_STYLE} --out-format=${HIGHLIGHT_OUT_FORMAT}"
 export PAGER=less

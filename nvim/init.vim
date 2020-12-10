@@ -199,7 +199,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " Snippet definitions for UltiSnips
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 
@@ -392,6 +392,8 @@ let g:fzf_colors =
 " -,-'-,-'-,-'-,- Coc -,-'-,-'-,-'-,-
 "
 let g:coc_global_extensions = [
+            "\ 'coc-ccls',
+            \ 'coc-clangd',
             \ 'coc-css',
             \ 'coc-emoji',
             \ 'coc-eslint',
@@ -582,6 +584,25 @@ let g:tagbar_type_typescript = {
       \ 'C' : 'const',
       \},
   \ }
+let g:tagbar_scopestrs = {
+    \    'class': "\uf0e8",
+    \    'const': "\uf8ff",
+    \    'constant': "\uf8ff",
+    \    'enum': "\uf702",
+    \    'field': "\uf30b",
+    \    'func': "\uf794",
+    \    'function': "\uf794",
+    \    'functions': "\uf794",
+    \    'getter': "\ufab6",
+    \    'implementation': "\uf776",
+    \    'interface': "\uf7fe",
+    \    'map': "\ufb44",
+    \    'member': "\uf02b",
+    \    'method': "\uf6a6",
+    \    'setter': "\uf7a9",
+    \    'variable': "\uf71b",
+    \    'variables': "\uf71b",
+    \ }
 "let g:tagbar_type_vue = {
     "\ 'ctags
 
