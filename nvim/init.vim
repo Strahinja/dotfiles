@@ -412,20 +412,20 @@ let g:coc_global_extensions = [
             \ 'coc-lines'
             \ ]
 
-let g:ctrlp_extensions = ['smarttabs']
+"let g:ctrlp_extensions = ['smarttabs']
 
-"let g:ctrlp_use_caching = 1
-if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-endif
-"if executable('rg')
-    "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-    "let g:ctrlp_use_caching = 0
-"endif
-
+""let g:ctrlp_use_caching = 1
 "if executable('ag')
-    "let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
+    "let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 "endif
+""if executable('rg')
+    ""let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    ""let g:ctrlp_use_caching = 0
+""endif
+
+""if executable('ag')
+    ""let g:CtrlSpaceGlobCommand = 'ag -l --hidden --nocolor -g ""'
+""endif
 
 " 
 " -,-'-,-'-,-'-,- NERDTree -,-'-,-'-,-'-,-
@@ -538,24 +538,6 @@ let g:tagbar_type_css = {
         \ 'i:identities'
     \ ]
 \ }
-"let g:tagbar_type_typescript = {                                                  
-  "\ 'ctagsbin' : 'tstags',                                                        
-  "\ 'ctagsargs' : '-f-',                                                           
-  "\ 'kinds': [                                                                     
-    "\ 'e:enums:0:1',                                                               
-    "\ 'f:function:0:1',                                                            
-    "\ 't:typealias:0:1',                                                           
-    "\ 'M:Module:0:1',                                                              
-    "\ 'I:import:0:1',                                                              
-    "\ 'i:interface:0:1',                                                           
-    "\ 'C:class:0:1',                                                               
-    "\ 'm:method:0:1',                                                              
-    "\ 'p:property:0:1',                                                            
-    "\ 'v:variable:0:1',                                                            
-    "\ 'c:const:0:1',                                                              
-  "\ ],                                                                            
-  "\ 'sort' : 0                                                                    
-"\ }
 let g:tagbar_type_typescript = {
     \ 'ctagstype': 'typescript',
     \ 'kinds': [

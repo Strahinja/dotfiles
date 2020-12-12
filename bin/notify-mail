@@ -1,6 +1,7 @@
 #!/bin/sh
 
 /usr/bin/mbsync -a
+/usr/bin/notmuch new
 
 for acc in /home/strajder/.local/share/mail/*; do
   for dir in $acc/*; do 
