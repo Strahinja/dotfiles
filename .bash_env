@@ -2,10 +2,10 @@
 
 export BROWSER=surf
 export CARGO_HOME="${HOME}/.cargo"
-export DENO_INSTALL="/home/strajder/.deno"
-export DOWNLOADS="/home/strajder/Downloads"
-export EDITOR=vim
-export GIT_PAGER=less
+export DENO_INSTALL=/home/strajder/.deno
+export DOWNLOADS=/home/strajder/Downloads
+export EDITOR=/usr/bin/vim
+export GIT_PAGER=/usr/bin/less
 export GPG_TTY=$(tty)
 export HIGHLIGHT_OUT_FORMAT=xterm256
 export HIGHLIGHT_STYLE=duotone-dark-forest
