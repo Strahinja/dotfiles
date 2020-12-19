@@ -11,7 +11,7 @@ vnoremap  "*d
 " -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
 "
 command! -bar OpenTodoList cexpr system('ag --stats -G "vue\<bar>js\<bar>php\<bar>c\<bar>h"
-            \ "TODO\<bar>FIXME" .') <bar> normal <F7>
+            \ "TODO:\<bar>FIXME:" .') <bar> normal <F7>
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview',
     \ 'bat --style=numbers --color=always --pager=never --theme=zenburn {}']}, <bang>0)
