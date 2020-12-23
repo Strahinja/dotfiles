@@ -7,3 +7,4 @@ xset fp rehash
 xrdb -merge ~/.Xresources
 
 exec dwm
+
