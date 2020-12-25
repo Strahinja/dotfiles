@@ -5,9 +5,12 @@
 
 for acc in /home/strajder/.local/share/mail/*; do
   for dir in $acc/*; do 
-    if [ -d "$dir/new" ] && [ $(du "$dir/new" | grep -v ^4 | wc -l) -gt 0 ]; then
-      MESSAGE="<b>$(echo "$dir" | sed -e 's/.*\/\(.*\)/\1/')</b> has new messages"
-      /usr/bin/env DISPLAY=:0 /usr/bin/notify-send "$MESSAGE" 
+    if [ -d "$dir/new" ]; then
+      count=$(($(ls -l "$dir/new/" | wc -l)-1))
+      if [ $count -gt 0 ]; then
+	MESSAGE="<b>$(echo "$dir" | sed -e 's/.*\/\(.*\)/\1/')</b> has new messages (<b>$count</b> total)"
+	/usr/bin/env DISPLAY=:0 /usr/bin/notify-send "$MESSAGE" 
+      fi
     fi
   done
 done
