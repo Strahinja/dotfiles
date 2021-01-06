@@ -1,6 +1,8 @@
 {
     "git.enableGutters": false,
     "eslint.filetypes": ["typescript"],
+    "eslint.validate": ["typescript"],
+    "eslint.lintTask.options": [".", "--ext", ".ts"],
     "python.jediEnabled": false,
     "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
