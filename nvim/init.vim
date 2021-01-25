@@ -180,7 +180,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'iamcco/markdown-preview.nvim'
 Plug 'majutsushi/tagbar'
-Plug 'enricobacis/vim-airline-clock'
+"Plug 'enricobacis/vim-airline-clock'
 
 "Plug 'elmindreda/vimcolors'
 "Plug 'dracula/vim'
