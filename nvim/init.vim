@@ -265,7 +265,7 @@ set cursorline
 " Hangs up Nvim, commented out
 "set inccommand=nosplit
 set switchbuf+=usetab
-set fillchars=eob:
+"set fillchars=eob:
 "cd ~/src/strahinja-org
 ""set rop=type:directx,gamma:1.0,contrast:0.5,level:1,geom:1,renmode:4,taamode:1
 
