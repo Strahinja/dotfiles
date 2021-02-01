@@ -1,7 +1,18 @@
 #!/bin/sh
 
-/usr/bin/mbsync -a
-/usr/bin/notmuch new
+LOGFILE=/home/strajder/log/notify-mail.log
+MAXSIZE=1048576
+
+# Rotate log
+if [ -r $LOGFILE ] && [ $(du -b $LOGFILE | awk '{print $1}') -gt $MAXSIZE ]; then
+  mv $LOGFILE $LOGFILE.1
+  gzip $LOGFILE.1
+  touch $LOGFILE
+fi
+
+echo "notify-mail: Starting run at $(date -Iseconds)" >> $LOGFILE
+/usr/bin/mbsync -a | tee -a $LOGFILE
+/usr/bin/notmuch new | tee -a $LOGFILE
 
 for acc in /home/strajder/.local/share/mail/*; do
   for dir in $acc/*; do 
@@ -10,8 +21,11 @@ for acc in /home/strajder/.local/share/mail/*; do
       if [ $count -gt 0 ]; then
 	MESSAGE="<b>$(echo "$dir" | sed -e 's/.*\/\(.*\)/\1/')</b> has new messages (<b>$count</b> total)"
 	/usr/bin/env DISPLAY=:0 /usr/bin/notify-send "$MESSAGE" 
+	echo "$MESSAGE" >> $LOGFILE
       fi
     fi
   done
 done
+
+echo "notify-mail: Run ended at $(date -Iseconds)" >> $LOGFILE
 
