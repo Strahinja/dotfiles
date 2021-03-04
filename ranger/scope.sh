@@ -95,6 +95,11 @@ handle_extension() {
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
             exit 1;;
 
+	## Markdown
+	md)
+	    mdview "${FILE_PATH}" && exit 5
+	    exit 1;;
+
 	## slweb
 	slw)
 	    $(which highlight) "${FILE_PATH}" -S markdown --out-format=${HIGHLIGHT_OUT_FORMAT} -s ${HIGHLIGHT_STYLE} | less -R && exit 5
@@ -109,7 +114,7 @@ handle_extension() {
 
 	## CSV
 	csv)
-	    table "${FILE_PATH}" && exit 5
+	    table -m "${FILE_PATH}" && exit 5
 	    exit 1;;
 
 #        ## HTML

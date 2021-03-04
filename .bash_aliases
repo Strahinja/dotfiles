@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#function mdview()
+#{
+#    markdown $* | lynx -dump -raw -stdin
+#}
+
 #alias ntpsync='sudo ntpdig -S 3.rs.pool.ntp.org'
 #alias ntpsync="sudo chronyc makestep"
 #alias ntpsync='doas sntp -s 1.rs.pool.ntp.org'

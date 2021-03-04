@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LESS=''
+markdown $* | lynx -dump -raw -stdin | /usr/bin/less
+
