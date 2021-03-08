@@ -10,4 +10,8 @@ x-scheme-handler/https=surf.desktop
 x-scheme-handler/ftp=surf.desktop
 video/mp4=mpv.desktop
 x-scheme-handler/viber=viber.desktop
+image/jpeg=sxiv.desktop
+image/jpg=sxiv.desktop
+image/png=sxiv.desktop
+image/webp=sxiv.desktop
 
