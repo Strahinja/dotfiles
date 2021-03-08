@@ -49,7 +49,7 @@ do_view_action() {
 
     case "${filetype}" in
     csv)
-        table -m -n "${MC_EXT_FILENAME}"
+        table -m -n -c 160 "${MC_EXT_FILENAME}"
         ;;
     md)
         markdown < "${MC_EXT_FILENAME}" | lynx -dump -raw -stdin
