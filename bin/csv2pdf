@@ -1,34 +1,16 @@
 #!/bin/sh
 
-cat <<EOT
-.\" t
-.
-.mso fira.tmac
-.
-.TS
-box tab(@);
+function usage()
+{
+	cat <<EOT
+Usage: $(basename $0) file.csv
 EOT
+}
 
-read first_line
-cols=$(($(sed -ze's/[^,]//g' <<<$first_line | wc -c)+1))
-while [ $cols -gt 0 ]; do
-    echo -n "c "
-    cols=$(($cols-1))
-done
-echo .
-sed -e's/@/\\[u0040]/g' <<<$first_line | \
-    awk 'BEGIN{ ORS=""; print "\\fB"; FS=","; OFS="\\fP@\\fB" } { $1=$1 }1; END{ \
-    ORS=""; print "\\fP" }' | sed -ze's/\"\([^"]*\)\"/\1/g'
-echo -e "\n_"
-read next_line
-while [ -n "$next_line" ]; do
-    sed -e's/@/\\[u0040]/g' <<<$next_line | \
-        awk 'BEGIN{ ORS=""; print "\\fR"; FS=","; OFS="\\fP@\\fR" } { $1=$1 }1; END{ \
-        ORS=""; print "\\fP" }' | sed -ze's/\"\([^"]*\)\"/\1/g'
-    echo
-    read next_line
-    [ -n "$next_line" ] && echo _
-done
-echo .TE
-# vim: set filetype=sh:
+if [ "$#" -eq 0 ]; then
+	usage
+	exit $?
+fi
+
+csv2roff < $1 | groff -Tpdf -t -k -P-pa4 -P-l - > $(basename -s.csv $1).pdf
 
