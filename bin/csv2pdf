@@ -12,5 +12,5 @@ if [ "$#" -eq 0 ]; then
 	exit $?
 fi
 
-csv2roff < $1 | groff -Tpdf -t -k -P-pa4 -P-l - > $(basename -s.csv $1).pdf
+csv2roff < "$1" | groff -Tpdf -t -k -P-pa4 -P-l - > "$(basename -s.csv "$1").pdf"
 
