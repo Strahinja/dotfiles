@@ -16,13 +16,15 @@ while [ $cols -gt 0 ]; do
     cols=$(($cols-1))
 done
 echo .
-awk 'BEGIN{ ORS=""; print "\\fB"; FS=","; OFS="\\fP@\\fB" } { $1=$1 }1; END{ \
-    ORS=""; print "\\fP" }' <<<$first_line | sed -ze's/\"\([^"]*\)\"/\1/g'
+sed -e's/@/\\[u0040]/g' <<<$first_line | \
+    awk 'BEGIN{ ORS=""; print "\\fB"; FS=","; OFS="\\fP@\\fB" } { $1=$1 }1; END{ \
+    ORS=""; print "\\fP" }' | sed -ze's/\"\([^"]*\)\"/\1/g'
 echo -e "\n_"
 read next_line
 while [ -n "$next_line" ]; do
-    awk 'BEGIN{ ORS=""; print "\\fR"; FS=","; OFS="\\fP@\\fR" } { $1=$1 }1; END{ \
-    ORS=""; print "\\fP" }' <<<$next_line | sed -ze's/\"\([^"]*\)\"/\1/g'
+    sed -e's/@/\\[u0040]/g' <<<$next_line | \
+        awk 'BEGIN{ ORS=""; print "\\fR"; FS=","; OFS="\\fP@\\fR" } { $1=$1 }1; END{ \
+        ORS=""; print "\\fP" }' | sed -ze's/\"\([^"]*\)\"/\1/g'
     echo
     read next_line
     [ -n "$next_line" ] && echo _
