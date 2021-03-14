@@ -16,6 +16,10 @@ do_view_action() {
         identify "${MC_EXT_FILENAME}"
         which exif >/dev/null 2>&1 && exif "${MC_EXT_FILENAME}" 2>/dev/null
         ;;
+    gif)
+	identify "${MC_EXT_FILENAME}"
+	which exif >/dev/null 2>&1 && exif "${MC_EXT_FILENAME}" 2>/dev/null
+	;;
     webp)
 	identify "${MC_EXT_FILENAME}"
 	${MC_XDG_OPEN} "${MC_EXT_FILENAME}"
@@ -42,6 +46,12 @@ do_open_action() {
     svg)
         (inkscape "${MC_EXT_FILENAME}" &)
         ;;
+    gif)
+	(sxiv "${MC_EXT_FILENAME}" &)
+	;;
+    jpe?g)
+	(sxiv "${MC_EXT_FILENAME}" &)
+	;;
     *)
         if [ -n "$DISPLAY" ]; then
             if which geeqie >/dev/null 2>&1; then

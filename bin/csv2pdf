@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cat <<EOT
+.\" t
+.
+.mso fira.tmac
+.
+.TS
+box tab(@);
+EOT
+
+read first_line
+cols=$(($(sed -ze's/[^,]//g' <<<$first_line | wc -c)+1))
+while [ $cols -gt 0 ]; do
+    echo -n "c "
+    cols=$(($cols-1))
+done
+echo .
+awk 'BEGIN{ ORS=""; print "\\fB"; FS=","; OFS="\\fP@\\fB" } { $1=$1 }1; END{ \
+    ORS=""; print "\\fP" }' <<<$first_line | sed -ze's/\"\([^"]*\)\"/\1/g'
+echo -e "\n_"
+read next_line
+while [ -n "$next_line" ]; do
+    awk 'BEGIN{ ORS=""; print "\\fR"; FS=","; OFS="\\fP@\\fR" } { $1=$1 }1; END{ \
+    ORS=""; print "\\fP" }' <<<$next_line | sed -ze's/\"\([^"]*\)\"/\1/g'
+    echo
+    read next_line
+    [ -n "$next_line" ] && echo _
+done
+echo .TE
+# vim: set filetype=sh:
+
