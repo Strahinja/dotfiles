@@ -16,6 +16,7 @@ while [ $cols -gt 0 ]; do
     cols=$(($cols-1))
 done
 echo .
+#sed -e's/@/\\[u0040]/g' -e':a s/\"\([^,]*\),\(.*\)\"/\"\1\x2c\2\"/g;t a' <<<$first_line | \
 sed -e's/@/\\[u0040]/g' <<<$first_line | \
     awk 'BEGIN{ ORS=""; print "\\fB"; FS=","; OFS="\\fP@\\fB" } { $1=$1 }1; END{ \
     ORS=""; print "\\fP" }' | sed -ze's/\"\([^"]*\)\"/\1/g'
