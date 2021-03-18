@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Lagrange
+Exec=/usr/local/bin/lagrange %U
+StartupNotify=true
+Terminal=false
+#Icon=lagrange
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=text/gemini;x-scheme-handler/gemini;
