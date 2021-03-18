@@ -220,6 +220,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 "Plug 'DavidEGx/ctrlp-smarttabs'
 
+Plug 'https://tildegit.org/sloum/gemini-vim-syntax'
+
 call plug#end()            " required
 set autoindent
 filetype plugin indent on    " required

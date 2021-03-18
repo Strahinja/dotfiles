@@ -2,6 +2,8 @@
 
 LOGFILE=/home/strajder/log/notify-mail.log
 MAXSIZE=1048576
+MBSYNC=$([ -x /usr/local/bin/mbsync ] && echo "/usr/local/bin/mbsync" \
+	|| echo "/usr/bin/mbsync")
 
 # Rotate log
 if [ -r $LOGFILE ] && [ $(du -b $LOGFILE | awk '{print $1}') -gt $MAXSIZE ]; then
@@ -11,7 +13,7 @@ if [ -r $LOGFILE ] && [ $(du -b $LOGFILE | awk '{print $1}') -gt $MAXSIZE ]; the
 fi
 
 echo "notify-mail: Starting run at $(date -Iseconds)" >> $LOGFILE
-/usr/bin/mbsync -a 2>/dev/null | tee -a $LOGFILE
+${MBSYNC} -a 2>/dev/null | tee -a $LOGFILE
 /usr/bin/notmuch new | tee -a $LOGFILE
 
 for acc in /home/strajder/.local/share/mail/*; do
