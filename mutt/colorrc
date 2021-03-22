@@ -1,0 +1,6 @@
+color header brightcyan default '^Date'
+color header brightcyan default '^To'
+color header green default '^From'
+color header yellow default '^Subject'
+color header brightblack default '^User-Agent'
+
