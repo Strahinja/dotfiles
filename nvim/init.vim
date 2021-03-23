@@ -3,9 +3,6 @@ let &packpath = &runtimepath
 " vim: set ft=vim :
 let s:cpo_save=&cpoptions
 set cpoptions&vim
-noremap! <C-Insert> "+y
-noremap! <S-Insert> *
-vnoremap  "*d
 
 " 
 " -,-'-,-'-,-'-,- Commands -,-'-,-'-,-'-,-
@@ -73,11 +70,10 @@ endfunction
 " 
 " -,-'-,-'-,-'-,- Shortcuts -,-'-,-'-,-'-,-
 "
-vnoremap <C-Del> "*d
-vnoremap <S-Del> "*d
-vnoremap <C-Insert> "*y
-vnoremap <S-Insert> "-d"*P
-nnoremap <S-Insert> "*P
+vmap <C-Insert> "+y
+map <S-Insert> "+p
+imap <S-Insert> <Esc>"+pi
+vmap <S-Del> "+d
 
 noremap <F3> :NERDTreeFind<CR>
 noremap <F4> :NERDTreeToggle<CR>

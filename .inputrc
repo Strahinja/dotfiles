@@ -1,0 +1,6 @@
+set bell-style none
+set blink-matching-paren On
+set colored-completion-prefix On
+set colored-stats On
+set skip-completed-text On
+

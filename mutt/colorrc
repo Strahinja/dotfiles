@@ -1,6 +1,57 @@
+color attachment color033 default
+color error brightwhite color088
+color hdrdefault color251 default
+color indicator brightwhite color022
+color markers color022 default
+color message color033 default
+color normal color251 default
+color options brightwhite default
+color progress color184 default
+color prompt color251 default
+color search brightwhite color018
+color signature color022 default
+color tilde color251 default
+color warning color184 default
+
+uncolor body *
+color body color227 default "(https?|ftps?|gemini|mailto):\/\/[A-Za-z0-9+%&@:\/~=\?\._-]+[A-Za-z0-9\/]"
+color body color227 default "[A-Za-z0-9\.\/~_-]+@[A-Za-z0-9\.\/~_-]+[A-Za-z]"
+
+uncolor header *
 color header brightcyan default '^Date'
-color header brightcyan default '^To'
+color header yellow default '^To'
 color header green default '^From'
-color header yellow default '^Subject'
+color header brightyellow default '^Subject'
 color header brightblack default '^User-Agent'
+color header brightblack default '^X-Mailer'
+
+uncolor index_number
+uncolor index_author *
+uncolor index_flags *
+uncolor index_subject *
+uncolor index *
+color index_author yellow default ~A
+color index_author brightyellow default "~N"
+color index_author brightcolor251 color018 ~T
+color index_author brightwhite color018 "~N~T"
+color index_flags color251 default ~A
+color index_flags brightwhite default "~N"
+color index_flags color251 color018 ~T
+color index_flags brightwhite color018 "~N~T"
+color index_subject color251 default ~A
+color index_subject brightwhite default "~N"
+color index_subject color251 color018 ~T
+color index_subject brightwhite color018 "~N~T"
+color index color251 color018 "~T"
+
+color sidebar_divider color237 default
+color sidebar_flagged color184 default
+color sidebar_highlight brightwhite color020
+color sidebar_indicator white color017
+color sidebar_new brightwhite default
+color sidebar_ordinary color251 default
+color sidebar_spoolfile color071 default
+color sidebar_unread brightwhite default
+
+color status white color022
 
