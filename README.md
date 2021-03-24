@@ -1,3 +1,5 @@
+**NOTE: this repository is archived. I have switched git hosting to sourcehut. See** https://sr.ht/~strahinja/dotfiles
+
 # dotfiles
 This is a cross-device updatable list of my configuration files.
 
